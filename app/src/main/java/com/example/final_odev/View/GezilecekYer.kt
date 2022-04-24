@@ -1,12 +1,18 @@
 package com.example.final_odev.View
 
+var gezilecekYerList = mutableListOf<GezilecekYer>()
+
+
+//kapak fotoğrafı degiskeni eklendi
 class GezilecekYer(
-    var id: Int,
+
     var yerAdi: String,
     var kisaTanim: String,
     var aciklama: String? = null,
     var imageList: List<String>?,
-    var oncelik: OncelikDurumu
+    var kapakFotografi:Int,
+    var oncelik: OncelikDurumu,
+    var id: Int? = gezilecekYerList.size,
 ) {
 
 

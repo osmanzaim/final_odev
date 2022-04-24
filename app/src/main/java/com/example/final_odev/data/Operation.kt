@@ -87,6 +87,7 @@ class Operation(context: Context) {
                 var kisaTanim =  c.getString(c.getColumnIndex("KisaTanim"))
                 var aciklama =  c.getString(c.getColumnIndex("Aciklama"))
                 var oncelik = c.getString(c.getColumnIndex("OncelikDurumu"))
+                var kapakFotografi = c.getInt(c.getColumnIndex("KapakFotografi"))
                 var oncelikDurumu : OncelikDurumu
                 if(oncelik == OncelikDurumu.DUSUK.toString()){
                     oncelikDurumu = OncelikDurumu.DUSUK
@@ -96,7 +97,7 @@ class Operation(context: Context) {
                     oncelikDurumu = OncelikDurumu.YUKSEK
                 }
 
-                gezilecekYer = GezilecekYer(id,yerAdi,kisaTanim,aciklama,null,oncelikDurumu)
+                gezilecekYer = GezilecekYer(yerAdi,kisaTanim,aciklama,null,kapakFotografi,oncelikDurumu,id)
                 gezilecekYerList.add(gezilecekYer)
 
             }while (c.moveToNext())

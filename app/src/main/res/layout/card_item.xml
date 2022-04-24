@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:cardCornerRadius="15dp"
+        android:layout_margin="10dp"
+        android:clickable="true"
+        app:cardElevation="7dp"
+        android:focusable="true" >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imageViewKapakFotografi"
+                android:layout_width="156dp"
+                android:layout_height="129dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:adjustViewBounds="true"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/karagol" />
+
+            <TextView
+                android:id="@+id/tvYerAdi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="Yer Adı"
+                android:textColor="#4B4848"
+                android:textSize="16sp"
+                android:lines="1"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/imageViewKapakFotografi"
+                app:layout_constraintTop_toTopOf="@+id/imageViewKapakFotografi" />
+
+            <TextView
+                android:id="@+id/tvKisaTanim"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yer Kısa Tanım"
+                android:lines="1"
+                android:textColor="#4B4848"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/tvYerAdi"
+                app:layout_constraintTop_toBottomOf="@+id/tvYerAdi" />
+
+            <TextView
+                android:id="@+id/tvKisaAciklama"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kısa Açıklama En Fazla 3 satır"
+                android:lines="3"
+                android:textColor="#9E9E9E"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/tvYerAdi"
+                app:layout_constraintTop_toBottomOf="@+id/tvKisaTanim" />
+
+            <ImageView
+                android:id="@+id/imageViewOncelik"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/yuksek_oncelik_belirtec" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

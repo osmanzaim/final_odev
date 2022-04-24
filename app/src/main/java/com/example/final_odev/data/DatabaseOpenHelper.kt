@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper
 
 class DatabaseOpenHelper(context: Context, name:String, factory:SQLiteDatabase.CursorFactory?, version: Int) :SQLiteOpenHelper(context,name,factory,version) {
     override fun onCreate(p0: SQLiteDatabase) {
-        val sorgu = "CREATE TABLE GezilecekYer(Id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, YerAdi TEXT, KisaTanim TEXT, Aciklama TEXT, OncelikDurumu TEXT)"
+        val sorgu = "CREATE TABLE GezilecekYer(Id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, YerAdi TEXT, KisaTanim TEXT, Aciklama TEXT, KapakFotografi INTEGER, OncelikDurumu TEXT)"
         //ziyaret listesini yukarıdaki sorguya eklemedim, aşağıda ziyaret tablosunda foreign key var zaten oradan id si uygun olanları çekeceğiz.
         // fotograf listesi için de ayrı table oluşturup Foregin key ile tutacağız.
         val sorgu2 = "CREATE TABLE Ziyaret(Id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, ZiyaretTarihi TEXT, Aciklama TEXT,  FOREIGN KEY(GezilecekYerFK) REFERENCES GezilecekYer(Id))"

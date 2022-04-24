@@ -7,6 +7,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
+import com.example.final_odev.View.GezilecekYer
+import com.example.final_odev.View.OncelikDurumu
+import com.example.final_odev.View.gezilecekYerList
 import com.example.final_odev.databinding.ActivityMainBinding
 import com.example.final_odev.databinding.TabLayoutBinding
 import com.example.final_odev.fragments.GezdiklerimFragment
@@ -21,16 +24,32 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
+        veriDoldur()
         viewPagerOlustur()
-
         TabLayoutMediator(binding.tabLayout, binding.viewPager){
                 tab,position ->
         }.attach()
-
         tabOlustur()
 
     }
+
+    fun veriDoldur() { //şimdilik veritabanı olmadan recyclerview çalışıyor mu gormek için hazırlyıorum.
+
+        val gezilecekYer = GezilecekYer("Karagöl","Borçka Karagöl","Tabiat ve doğayla iç içe bir yer.",null,R.drawable.karagol,OncelikDurumu.YUKSEK)
+        gezilecekYerList.add(gezilecekYer)
+        val gezilecekYer2 = GezilecekYer("Mençuna Şelalesi","Büyük bir şelale","Doğa içerisinde büyük bir şelale.",null,R.drawable.mencuna_selalesi,OncelikDurumu.ORTA)
+        gezilecekYerList.add(gezilecekYer2)
+        val gezilecekYer3 = GezilecekYer("Sümela Manastırı","Manastır","Trabzon'da bir manastır.",null,R.drawable.sumela_manastiri,OncelikDurumu.DUSUK)
+        gezilecekYerList.add(gezilecekYer3)
+
+        val gezilecekYer4 = GezilecekYer("Sümela Manastırı","Manastır","Trabzon'da bir manastır.",null,R.drawable.sumela_manastiri,OncelikDurumu.DUSUK)
+        gezilecekYerList.add(gezilecekYer4)
+
+    }
+
+
+
+
 
 
     private fun tabOlustur() {
@@ -50,8 +69,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun viewPagerOlustur() {
         val adapter = ViewPagerAdapter(this)
-        adapter.fragmentEkle(GezdiklerimFragment())
         adapter.fragmentEkle(GezileceklerFragment())
+        adapter.fragmentEkle(GezdiklerimFragment())
 
         binding.viewPager.adapter = adapter
     }
