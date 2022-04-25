@@ -1,19 +1,23 @@
 package com.example.final_odev.View
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-
 import android.view.View
-import android.widget.*
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.final_odev.R
 import com.example.final_odev.View.Adapter.YerEkleAdapter
 import com.example.final_odev.databinding.ActivityYerEkleBinding
+import com.example.final_odev.viewmodel.GezilecekYerLogic
 
 
 class ActivityYerEkle : AppCompatActivity() {
     lateinit var imageList: ArrayList<Int>
     lateinit var binding : ActivityYerEkleBinding
+    var oncelikDurumu : OncelikDurumu ?= null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,6 +26,37 @@ class ActivityYerEkle : AppCompatActivity() {
         setContentView(binding.root)
         init()
         spinner()
+
+        btnKaydetClickListener()
+
+
+
+    }
+
+    private fun btnKaydetClickListener() {
+        binding.btnYerKaydet.setOnClickListener {
+            var yerAdi = binding.etYerAdi.text.toString()
+            var yerKisaTanim = binding.etYerKisaTanim.text.toString()
+            var kisaAciklama = binding.etYerKisaAciklama.text.toString()
+
+
+            var gezilecekYer = GezilecekYer(yerAdi,yerKisaTanim,kisaAciklama,null,
+                R.drawable.karagol, oncelikDurumu!!)
+
+
+            GezilecekYerLogic.ekle(this,gezilecekYer)
+
+
+           // var arrayList = GezilecekYerLogic.tumGezilecekYerleriGetir(this)
+            //Toast.makeText(this,arrayList.size.toString(), Toast.LENGTH_LONG).show()
+
+            val intent = Intent()
+            setResult(RESULT_OK, intent)
+            finish()
+
+
+        }
+
 
 
 
@@ -39,20 +74,21 @@ class ActivityYerEkle : AppCompatActivity() {
     }
 
     fun spinner() {
-        val options = arrayOf("Öncelik ekle","Öncelik 1", "Öncelik 2", "Öncelik 3")
+        val options = arrayOf("Yüksek","Orta", "Düşük")
         binding.spinner.adapter = ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, options)
         binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener,
             AdapterView.OnItemClickListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
+
                 when(position){
-                    1 ->{
-                        // öncelik 1 seçildiğinde
+                    0 ->{
+                        oncelikDurumu = OncelikDurumu.YUKSEK
                     }
-                    2-> {
-                        // Öncelik 2 seçildiğinde
+                    1-> {
+                        oncelikDurumu = OncelikDurumu.ORTA
                     }
-                    3 -> {
-                        // Öncelik 3 seçildiğinde
+                    2 -> {
+                        oncelikDurumu= OncelikDurumu.DUSUK
                     }
                 }
             }

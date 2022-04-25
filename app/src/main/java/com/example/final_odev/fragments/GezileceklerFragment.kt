@@ -1,5 +1,6 @@
 package com.example.final_odev.fragments
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -30,7 +31,19 @@ class GezileceklerFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+
     }
+
+    @SuppressLint("NotifyDataSetChanged")
+    override fun onResume() {
+        super.onResume()
+        binding.rvGezilecekYerler.adapter!!.notifyDataSetChanged()
+
+
+    }
+
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,7 +52,7 @@ class GezileceklerFragment : Fragment() {
         binding = FragmentGezileceklerBinding.inflate(inflater,container,false)
         rvHazirla()
 
-
+        Toast.makeText(requireContext(), gezilecekYerList.size.toString(), Toast.LENGTH_LONG).show()
         return binding.root
     }
 

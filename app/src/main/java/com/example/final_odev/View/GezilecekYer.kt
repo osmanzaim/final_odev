@@ -1,5 +1,7 @@
 package com.example.final_odev.View
 
+import com.example.final_odev.R
+
 var gezilecekYerList = mutableListOf<GezilecekYer>()
 
 

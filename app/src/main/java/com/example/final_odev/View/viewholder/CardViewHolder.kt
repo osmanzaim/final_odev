@@ -9,6 +9,9 @@ import com.example.final_odev.databinding.CardItemBinding
 
 class CardViewHolder(val cardItemBinding:CardItemBinding, var listener:(GezilecekYer)->Unit) : RecyclerView.ViewHolder(cardItemBinding.root) {
     lateinit var gezilecekYerObjesi : GezilecekYer
+
+
+
     fun bindGezilecekYer(gezilecekYer:GezilecekYer ,gelenFragment:String) {
         gezilecekYerObjesi = gezilecekYer
 
@@ -21,6 +24,8 @@ class CardViewHolder(val cardItemBinding:CardItemBinding, var listener:(Gezilece
             cardItemBinding.textViewTarih.visibility = View.GONE
         }
 
+
+
         cardItemBinding.imageViewKapakFotografi.setImageResource(gezilecekYer.kapakFotografi)
         cardItemBinding.tvKisaAciklama.text = gezilecekYer.aciklama
         cardItemBinding.tvKisaTanim.text = gezilecekYer.kisaTanim
@@ -31,7 +36,7 @@ class CardViewHolder(val cardItemBinding:CardItemBinding, var listener:(Gezilece
             cardItemBinding.imageViewOncelik.setImageResource(R.drawable.dusuk_oncelik_belirtec)
         }else if(oncelik == OncelikDurumu.ORTA){
             cardItemBinding.imageViewOncelik.setImageResource(R.drawable.orta_oncelik_belirtec)
-        }else{
+        }else if(oncelik == OncelikDurumu.YUKSEK){
             cardItemBinding.imageViewOncelik.setImageResource(R.drawable.yuksek_oncelik_belirtec)
         }
 
