@@ -1,14 +1,26 @@
 package com.example.final_odev.View.viewholder
 
+import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.example.final_odev.R
 import com.example.final_odev.View.GezilecekYer
 import com.example.final_odev.View.OncelikDurumu
 import com.example.final_odev.databinding.CardItemBinding
 
-class CardViewHolder(val cardItemBinding:CardItemBinding) : RecyclerView.ViewHolder(cardItemBinding.root) {
+class CardViewHolder(val cardItemBinding:CardItemBinding, var listener:(GezilecekYer)->Unit) : RecyclerView.ViewHolder(cardItemBinding.root) {
+    lateinit var gezilecekYerObjesi : GezilecekYer
+    fun bindGezilecekYer(gezilecekYer:GezilecekYer ,gelenFragment:String) {
+        gezilecekYerObjesi = gezilecekYer
 
-    fun bindGezilecekYer(gezilecekYer:GezilecekYer) {
+        // GezileceklerFragment'ten geldiyse, öncelik durumunu göster, ziyaret edilmiş ise onun yerine tarihini göster.
+        if(gelenFragment == "gezdigim") {
+            cardItemBinding.imageViewOncelik.visibility = View.GONE
+            cardItemBinding.textViewTarih.visibility = View.VISIBLE
+        }else{
+            cardItemBinding.imageViewOncelik.visibility = View.VISIBLE
+            cardItemBinding.textViewTarih.visibility = View.GONE
+        }
+
         cardItemBinding.imageViewKapakFotografi.setImageResource(gezilecekYer.kapakFotografi)
         cardItemBinding.tvKisaAciklama.text = gezilecekYer.aciklama
         cardItemBinding.tvKisaTanim.text = gezilecekYer.kisaTanim
@@ -22,6 +34,15 @@ class CardViewHolder(val cardItemBinding:CardItemBinding) : RecyclerView.ViewHol
         }else{
             cardItemBinding.imageViewOncelik.setImageResource(R.drawable.yuksek_oncelik_belirtec)
         }
+
     }
+
+    init{
+        cardItemBinding.cardView.setOnClickListener {
+            listener(gezilecekYerObjesi)
+        }
+    }
+
+
 
 }

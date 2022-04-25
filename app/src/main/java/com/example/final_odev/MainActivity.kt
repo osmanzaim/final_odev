@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
+import androidx.navigation.fragment.NavHostFragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.example.final_odev.View.GezilecekYer
@@ -30,6 +31,7 @@ class MainActivity : AppCompatActivity() {
                 tab,position ->
         }.attach()
         tabOlustur()
+
 
     }
 

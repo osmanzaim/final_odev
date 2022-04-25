@@ -54,11 +54,15 @@ class GezdiklerimFragment : Fragment() {
      fun rvHazirla() {
             binding.rvGezdigimYerler.apply{
                 layoutManager = GridLayoutManager(requireActivity().applicationContext,1)
-                adapter = CardAdapter(gezdigimYerlerListesi)
+                adapter = CardAdapter(gezdigimYerlerListesi,"gezdigim", ::cardClickListener)
             }
         }
 
 
+
+    fun cardClickListener(gezilecekYer:GezilecekYer) {
+
+    }
 
 
 

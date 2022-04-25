@@ -6,17 +6,18 @@
     android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="7dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:cardCornerRadius="15dp"
-        android:layout_margin="10dp"
-        android:clickable="true"
-        app:cardElevation="7dp"
-        android:focusable="true" >
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -38,10 +39,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
+                android:lines="1"
                 android:text="Yer Adı"
                 android:textColor="#4B4848"
                 android:textSize="16sp"
-                android:lines="1"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/imageViewKapakFotografi"
                 app:layout_constraintTop_toTopOf="@+id/imageViewKapakFotografi" />
@@ -50,8 +51,8 @@
                 android:id="@+id/tvKisaTanim"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Yer Kısa Tanım"
                 android:lines="1"
+                android:text="Yer Kısa Tanım"
                 android:textColor="#4B4848"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/tvYerAdi"
@@ -61,8 +62,8 @@
                 android:id="@+id/tvKisaAciklama"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Kısa Açıklama En Fazla 3 satır"
                 android:lines="3"
+                android:text="Kısa Açıklama En Fazla 3 satır"
                 android:textColor="#9E9E9E"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/tvYerAdi"
@@ -76,6 +77,18 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/yuksek_oncelik_belirtec" />
+
+            <TextView
+                android:id="@+id/textViewTarih"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="19.05.1881"
+                android:textColor="#4B4848"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/imageViewOncelik" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

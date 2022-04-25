@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue"
+    tools:context=".fragments.DetayActivity">
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="409dp"
+        android:layout_height="4dp"
+        android:layout_marginTop="106dp"
+        android:background="@color/blue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:lines="2"
+        android:text="Yer Adı\n 2 satır"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/divider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView"
+        app:layout_constraintStart_toStartOf="@+id/guideline4"
+        app:srcCompat="@drawable/geri_ok2" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05" />
+
+
+    <com.denzcoskun.imageslider.ImageSlider
+        android:id="@+id/imgSlider"
+        android:layout_width="match_parent"
+        android:layout_height="222dp"
+        android:background="#DFDFDE"
+        app:iss_auto_cycle="false"
+        app:iss_corner_radius="5"
+        app:iss_delay="0"
+        app:iss_error_image="@color/black"
+        app:iss_placeholder="@color/blue"
+        app:iss_selected_dot="@drawable/default_selected_dot"
+        app:iss_unselected_dot="@drawable/default_unselected_dot"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider"
+        tools:ignore="MissingConstraints">
+
+    </com.denzcoskun.imageslider.ImageSlider>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_margin="30dp"
+        android:layout_marginBottom="28dp"
+        android:backgroundTint="@color/main_color"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="@+id/tabLayout"
+        app:layout_constraintEnd_toEndOf="@+id/tabLayout"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="@+id/tabLayout"
+        app:srcCompat="@drawable/add" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/tab_layout_shape"
+        android:elevation="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:tabIndicatorHeight="0dp" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/floatingActionButton"
+        app:layout_constraintStart_toStartOf="@+id/tabLayout" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvZiyaretGecmisi"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#DFDFDE"
+        app:layout_constraintBottom_toTopOf="@+id/tabLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ziyaretEkleLayout" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/ziyaretEkleLayout"
+        android:layout_width="409dp"
+        android:layout_height="197dp"
+        android:background="#DFDFDE"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgSlider">
+
+        <TextView
+            android:id="@+id/yerKisaAciklama"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="76dp"
+            android:background="@drawable/aciklama_background"
+            android:paddingLeft="2dp"
+            android:paddingTop="2dp"
+            android:text="Yer Kısa Açıklama"
+            android:textColor="#4B4848"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/btnZiyaretEkle"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/tvOncelik"
+            app:layout_constraintTop_toBottomOf="@+id/tvOncelik"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/tvOncelik"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/aciklama_background"
+            android:paddingLeft="2dp"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            android:text="Öncelik"
+            android:textColor="#4B4848"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/ivOncelikDurumu"
+            android:layout_width="20dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/tvOncelik"
+            app:layout_constraintEnd_toEndOf="@+id/tvOncelik"
+            app:layout_constraintTop_toTopOf="@+id/tvOncelik"
+            app:srcCompat="@drawable/orta_oncelik_belirtec" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnZiyaretEkle"
+            android:layout_width="94dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/btn_arkaplan"
+            android:text="Ziyaret Ekle"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tvOncelik"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/tvYerKisaTanim"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/aciklama_background"
+            android:paddingLeft="2dp"
+            android:paddingTop="2dp"
+            android:text="Yer Kısa Tanım"
+            android:textColor="#4B4848"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/btnZiyaretEkle"
+            app:layout_constraintStart_toStartOf="@+id/tvOncelik"
+            app:layout_constraintTop_toBottomOf="@+id/tvOncelik" />
+
+        <TextView
+            android:id="@+id/tvKisaTanimBilgisi"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="Kisa Tanim Bilgisi"
+            android:textColor="#9E9E9E"
+            app:layout_constraintBottom_toBottomOf="@+id/tvYerKisaTanim"
+            app:layout_constraintEnd_toEndOf="@+id/tvYerKisaTanim"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/tvYerKisaTanim" />
+
+        <TextView
+            android:id="@+id/tvKisaAciklamaBilgisi"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:text="Kisa Aciklama"
+            android:textColor="#9E9E9E"
+            android:lines="3"
+            app:layout_constraintEnd_toEndOf="@+id/tvYerKisaTanim"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/tvYerKisaTanim"
+            app:layout_constraintTop_toTopOf="@+id/yerKisaAciklama" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnKonumGoster"
+            android:layout_width="65dp"
+            android:layout_height="32dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/btn_arkaplan"
+            android:text="Konum\nGöster"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@+id/tvYerKisaTanim"
+            app:layout_constraintTop_toTopOf="@+id/tvYerKisaTanim" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ziyaret Geçmişi"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/yerKisaAciklama" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
