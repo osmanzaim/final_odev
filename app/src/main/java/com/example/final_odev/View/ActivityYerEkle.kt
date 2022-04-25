@@ -17,7 +17,7 @@ import com.example.final_odev.viewmodel.GezilecekYerLogic
 class ActivityYerEkle : AppCompatActivity() {
     lateinit var imageList: ArrayList<Int>
     lateinit var binding : ActivityYerEkleBinding
-    var oncelikDurumu : OncelikDurumu ?= null
+    var oncelikDurumu : String = "YUKSEK"
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,10 +38,18 @@ class ActivityYerEkle : AppCompatActivity() {
             var yerAdi = binding.etYerAdi.text.toString()
             var yerKisaTanim = binding.etYerKisaTanim.text.toString()
             var kisaAciklama = binding.etYerKisaAciklama.text.toString()
+            var oncelik : OncelikDurumu
+            if(oncelikDurumu == OncelikDurumu.YUKSEK.toString()){
+                oncelik = OncelikDurumu.YUKSEK
+            }else if(oncelikDurumu == OncelikDurumu.ORTA.toString()){
+                oncelik = OncelikDurumu.ORTA
+            }else{
+                oncelik = OncelikDurumu.DUSUK
+            }
 
 
             var gezilecekYer = GezilecekYer(yerAdi,yerKisaTanim,kisaAciklama,null,
-                R.drawable.karagol, oncelikDurumu!!)
+                R.drawable.karagol, oncelik)
 
 
             GezilecekYerLogic.ekle(this,gezilecekYer)
@@ -82,13 +90,13 @@ class ActivityYerEkle : AppCompatActivity() {
 
                 when(position){
                     0 ->{
-                        oncelikDurumu = OncelikDurumu.YUKSEK
+                        oncelikDurumu = "YUKSEK"
                     }
                     1-> {
-                        oncelikDurumu = OncelikDurumu.ORTA
+                        oncelikDurumu = "ORTA"
                     }
                     2 -> {
-                        oncelikDurumu= OncelikDurumu.DUSUK
+                        oncelikDurumu= "DUSUK"
                     }
                 }
             }

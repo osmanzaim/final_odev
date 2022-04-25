@@ -33,7 +33,8 @@ class Operation(context: Context) {
         cv.put("YerAdi",gezilecekYer.yerAdi)
         cv.put("KisaTanim",gezilecekYer.kisaTanim)
         cv.put("Aciklama", gezilecekYer.aciklama)
-        cv.put("OncelikDurumu", gezilecekYer.yerAdi)
+        cv.put("OncelikDurumu", gezilecekYer.oncelik.toString())
+        cv.put("KapakFotografi", gezilecekYer.kapakFotografi)
 
         open()
         val etkilenenKayit = GeziDatabase!!.insert("GezilecekYer",null,cv)

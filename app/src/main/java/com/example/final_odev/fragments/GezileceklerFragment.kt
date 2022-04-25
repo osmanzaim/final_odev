@@ -21,6 +21,7 @@ import com.example.final_odev.View.Adapter.CardAdapter
 import com.example.final_odev.View.GezilecekYer
 import com.example.final_odev.View.gezilecekYerList
 import com.example.final_odev.databinding.FragmentGezileceklerBinding
+import com.example.final_odev.viewmodel.GezilecekYerLogic
 
 class GezileceklerFragment : Fragment() {
 
@@ -52,7 +53,11 @@ class GezileceklerFragment : Fragment() {
         binding = FragmentGezileceklerBinding.inflate(inflater,container,false)
         rvHazirla()
 
-        Toast.makeText(requireContext(), gezilecekYerList.size.toString(), Toast.LENGTH_LONG).show()
+        //Toast.makeText(requireContext(), gezilecekYerList.size.toString(), Toast.LENGTH_LONG).show()
+        if(gezilecekYerList.size>0){
+            Toast.makeText(requireContext(), gezilecekYerList[0].oncelik.toString(),Toast.LENGTH_LONG).show()
+        }
+
         return binding.root
     }
 
@@ -61,6 +66,7 @@ class GezileceklerFragment : Fragment() {
     fun rvHazirla() {
         binding.rvGezilecekYerler.apply{
             layoutManager = GridLayoutManager(requireActivity().applicationContext,1)
+            gezilecekYerList = GezilecekYerLogic.tumGezilecekYerleriGetir(requireContext())
             adapter = CardAdapter(gezilecekYerList,"gezilecek", ::cardClickListener)
         }
     }
