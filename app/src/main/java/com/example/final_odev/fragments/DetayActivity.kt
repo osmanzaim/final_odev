@@ -5,6 +5,7 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -57,6 +58,11 @@ class DetayActivity : AppCompatActivity() {
     private fun ziyaretDoldur() {
         var ziyaretId = intent.getIntExtra("id",-1)
         ziyaretListesi = ZiyaretLogic.fkyeGoreGetir(this,ziyaretId)
+
+        if(ziyaretListesi.size == 0){
+            binding.rvZiyaretGecmisi.visibility = View.GONE
+            binding.textView2.visibility = View.GONE
+        }
     }
 
     private fun btnZiyaretEkleListener() {
@@ -71,9 +77,12 @@ class DetayActivity : AppCompatActivity() {
     }
 
     fun gelenClassaGoreVeriDoldur() {
+
         var id = intent.getIntExtra("id",-1)
         Toast.makeText(this,id.toString(),Toast.LENGTH_SHORT).show()
         var gezilecekYer = GezilecekYerLogic.idyeGoreGetir(this,id)
+
+        binding.tvYerBasligi.text = gezilecekYer.yerAdi
 
         if(gezilecekYer.oncelik == OncelikDurumu.YUKSEK){
             binding.ivOncelikDurumu.setImageResource(R.drawable.yuksek_oncelik_belirtec)
@@ -132,6 +141,9 @@ class DetayActivity : AppCompatActivity() {
             //  you will get result here in result.data
             var ziyaretId = intent.getIntExtra("id",-1)
             ziyaretListesi = ZiyaretLogic.fkyeGoreGetir(this,ziyaretId)
+
+            binding.rvZiyaretGecmisi.visibility = View.VISIBLE
+            binding.textView2.visibility = View.VISIBLE
             binding.rvZiyaretGecmisi.adapter = ZiyaretAdapter(ziyaretListesi)
 
 

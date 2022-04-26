@@ -27,7 +27,7 @@
 
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/tvYerBasligi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
@@ -45,7 +45,7 @@
             android:id="@+id/imageView"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            app:layout_constraintBottom_toBottomOf="@+id/textView"
+            app:layout_constraintBottom_toBottomOf="@+id/tvYerBasligi"
             app:layout_constraintStart_toStartOf="@+id/guideline4"
             app:srcCompat="@drawable/geri_ok" />
 
