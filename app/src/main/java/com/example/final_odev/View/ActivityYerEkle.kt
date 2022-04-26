@@ -49,13 +49,13 @@ class ActivityYerEkle : AppCompatActivity() {
 
 
             var gezilecekYer = GezilecekYer(yerAdi,yerKisaTanim,kisaAciklama,null,
-                R.drawable.karagol, oncelik)
+                R.drawable.karagol, oncelik,null)
 
 
             GezilecekYerLogic.ekle(this,gezilecekYer)
 
 
-           // var arrayList = GezilecekYerLogic.tumGezilecekYerleriGetir(this)
+            // var arrayList = GezilecekYerLogic.tumGezilecekYerleriGetir(this)
             //Toast.makeText(this,arrayList.size.toString(), Toast.LENGTH_LONG).show()
 
             val intent = Intent()
