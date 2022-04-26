@@ -12,7 +12,7 @@
         android:layout_margin="10dp"
         android:clickable="true"
         android:focusable="true"
-        app:cardCornerRadius="15dp"
+        app:cardCornerRadius="6dp"
         app:cardElevation="7dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,9 +27,11 @@
                 android:id="@+id/imageViewKapakFotografi"
                 android:layout_width="156dp"
                 android:layout_height="129dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginBottom="16dp"
                 android:adjustViewBounds="true"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/karagol" />
@@ -60,13 +62,14 @@
 
             <TextView
                 android:id="@+id/tvKisaAciklama"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:lines="3"
-                android:text="Kısa Açıklama En Fazla 3 satır"
+                android:maxLines="3"
+                android:text="Kısa açıklama."
                 android:textColor="#9E9E9E"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@+id/tvYerAdi"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tvKisaTanim"
                 app:layout_constraintTop_toBottomOf="@+id/tvKisaTanim" />
 
             <ImageView

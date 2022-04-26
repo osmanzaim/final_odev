@@ -49,7 +49,7 @@ class ActivityYerEkle : AppCompatActivity() {
 
 
             var gezilecekYer = GezilecekYer(yerAdi,yerKisaTanim,kisaAciklama,null,
-                R.drawable.karagol, oncelik,null)
+                R.drawable.karagol, oncelik)
 
 
             GezilecekYerLogic.ekle(this,gezilecekYer)
