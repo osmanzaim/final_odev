@@ -91,12 +91,16 @@ class ActivityYerEkle : AppCompatActivity() {
                 when(position){
                     0 ->{
                         oncelikDurumu = "YUKSEK"
+                        binding.imageView2.setImageResource(R.drawable.yuksek_oncelik_belirtec)
+
                     }
                     1-> {
                         oncelikDurumu = "ORTA"
+                        binding.imageView2.setImageResource(R.drawable.orta_oncelik_belirtec)
                     }
                     2 -> {
                         oncelikDurumu= "DUSUK"
+                        binding.imageView2.setImageResource(R.drawable.dusuk_oncelik_belirtec)
                     }
                 }
             }
