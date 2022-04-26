@@ -39,6 +39,7 @@ class ActivityYerEkle : AppCompatActivity() {
             var yerKisaTanim = binding.etYerKisaTanim.text.toString()
             var kisaAciklama = binding.etYerKisaAciklama.text.toString()
             var oncelik : OncelikDurumu
+            val kapakFotografi : Int
             if(oncelikDurumu == OncelikDurumu.YUKSEK.toString()){
                 oncelik = OncelikDurumu.YUKSEK
             }else if(oncelikDurumu == OncelikDurumu.ORTA.toString()){
@@ -46,10 +47,15 @@ class ActivityYerEkle : AppCompatActivity() {
             }else{
                 oncelik = OncelikDurumu.DUSUK
             }
+            if(imageList.size == 1) {
+                kapakFotografi = R.drawable.union
+            }else {
+                kapakFotografi = imageList.get(0)
+            }
 
 
             var gezilecekYer = GezilecekYer(yerAdi,yerKisaTanim,kisaAciklama,null,
-                R.drawable.karagol, oncelik,null)
+                kapakFotografi, oncelik,null)
 
 
             GezilecekYerLogic.ekle(this,gezilecekYer)
