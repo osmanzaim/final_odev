@@ -1,5 +1,6 @@
 package com.example.final_odev.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,11 +13,13 @@ import com.example.final_odev.View.GezilecekYer
 import com.example.final_odev.View.OncelikDurumu
 import com.example.final_odev.View.gezilecekYerList
 import com.example.final_odev.databinding.FragmentGezdiklerimBinding
+import com.example.final_odev.viewmodel.GezilecekYerLogic
+import com.example.final_odev.viewmodel.ZiyaretLogic
 
 class GezdiklerimFragment : Fragment() {
 
     companion object{
-        var gezdigimYerlerListesi = mutableListOf<GezilecekYer>()
+        var gezdigimYerlerListesi = arrayListOf<GezilecekYer>()
     }
     lateinit var binding:FragmentGezdiklerimBinding
 
@@ -25,12 +28,19 @@ class GezdiklerimFragment : Fragment() {
 
     }
 
+    override fun onResume() {
+        super.onResume()
+        binding.rvGezdigimYerler.adapter = CardAdapter(gezdigimYerlerListesi,"gezdigim", ::cardClickListener,requireContext())
+        yerleriBul()
+        rvHazirla()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentGezdiklerimBinding.inflate(inflater,container,false)
-        gezdiklerimListesiDoldur()
+        yerleriBul()
         rvHazirla()
 
 
@@ -40,27 +50,57 @@ class GezdiklerimFragment : Fragment() {
         return binding.root
     }
 
+    fun yerleriBul() {
+
+        gezdigimYerlerListesi.clear()
+        var ziyaretListesi = ZiyaretLogic.tumunuGetir(requireContext())
+
+        for(item in ziyaretListesi){
+            var gezdigimYer = GezilecekYerLogic.idyeGoreGetir(requireContext(),item.gezilecekYerFK)
+            gezdigimYer.ziyaretTarihi = item.ziyaretTarihi
+            gezdigimYerlerListesi.add(gezdigimYer)
+        }
+
+
+    }
+
 
     fun gezdiklerimListesiDoldur() {
+
+        var ziyaretListesi = ZiyaretLogic.tumunuGetir(requireContext())
+
+        for (item in ziyaretListesi){
+
+        }
+
+        /*
         val gezilecekYer2 = GezilecekYer("Mençuna Şelalesi","Büyük bir şelale","Doğa içerisinde büyük bir şelale.",null,R.drawable.mencuna_selalesi,
             OncelikDurumu.ORTA,45645)
         gezdigimYerlerListesi.add(gezilecekYer2)
         val gezilecekYer3 = GezilecekYer("Sümela Manastırı","Manastır","Trabzon'da bir manastır.",null,R.drawable.sumela_manastiri,
             OncelikDurumu.DUSUK,346345)
         gezdigimYerlerListesi.add(gezilecekYer3)
+
+         */
     }
 
 
      fun rvHazirla() {
             binding.rvGezdigimYerler.apply{
                 layoutManager = GridLayoutManager(requireActivity().applicationContext,1)
-                adapter = CardAdapter(gezdigimYerlerListesi,"gezdigim", ::cardClickListener)
+                adapter = CardAdapter(gezdigimYerlerListesi,"gezdigim", ::cardClickListener,requireContext())
             }
         }
 
 
 
     fun cardClickListener(gezilecekYer:GezilecekYer) {
+
+        val intent = Intent (activity, DetayActivity::class.java)
+        intent.putExtra("id",gezilecekYer.id)
+        startActivity(intent)
+
+        //gezdiklerimin yenilenmesinde sorun var, uygulamayı açıp kapayınca yenileniyor ama diğer türlü olmuyor
 
     }
 

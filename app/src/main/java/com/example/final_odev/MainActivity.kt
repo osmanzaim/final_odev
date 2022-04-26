@@ -51,8 +51,10 @@ class MainActivity : AppCompatActivity() {
 
         btnClickListener()
 
-
     }
+
+
+
 
     var resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult(), ::duzenleResult )
 
@@ -79,7 +81,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun veriDoldur() { //şimdilik veritabanı olmadan recyclerview çalışıyor mu gormek için hazırlyıorum.
+    fun veriDoldur() {
 
         gezilecekYerList = GezilecekYerLogic.tumGezilecekYerleriGetir(this)
 

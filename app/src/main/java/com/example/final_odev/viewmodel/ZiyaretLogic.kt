@@ -12,6 +12,11 @@ class ZiyaretLogic {
             Operation(context).ziyaretEkle(ziyaret)
         }
 
+        fun tumunuGetir(context: Context):ArrayList<Ziyaret>{
+            var operation = Operation(context)
+            return operation.tumZiyaretleriGetir()
+        }
+
 
         fun fkyeGoreGetir(context: Context, foreignKey:Int) : ArrayList<Ziyaret>{
             var operation = Operation(context)

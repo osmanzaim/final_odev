@@ -15,9 +15,11 @@
         android:theme="@style/Theme.Final_odev">
         <activity
             android:name=".View.ActivityZiyaretEkle"
+            android:windowSoftInputMode="adjustPan"
             android:exported="false" />
         <activity
             android:name=".View.ActivityYerEkle"
+            android:windowSoftInputMode="adjustPan"
             android:exported="false" />
         <activity
             android:name=".fragments.DetayActivity"

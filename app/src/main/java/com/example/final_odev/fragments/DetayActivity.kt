@@ -46,7 +46,16 @@ class DetayActivity : AppCompatActivity() {
 
         btnZiyaretEkleListener()
 
+        btnGeriOkuListener()
+
     }
+
+    private fun btnGeriOkuListener() {
+        binding.imageView.setOnClickListener {
+            finish()
+        }
+    }
+
 
     private fun ziyaretGecmisiRvHazirla() {
         binding.rvZiyaretGecmisi.apply{

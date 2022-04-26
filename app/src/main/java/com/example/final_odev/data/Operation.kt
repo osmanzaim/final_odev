@@ -93,6 +93,40 @@ class Operation(context: Context) {
     }
 
 
+    private fun tumZiyaretler():Cursor{
+        val sorgu = "Select * from Ziyaret"
+        return GeziDatabase!!.rawQuery(sorgu,null)
+
+    }
+
+    @SuppressLint("Range")
+    fun tumZiyaretleriGetir() : ArrayList<Ziyaret>{
+        val ziyaretList = ArrayList<Ziyaret>()
+        var ziyaret : Ziyaret
+
+        open()
+        var c : Cursor = tumZiyaretler()
+
+        if(c.moveToFirst()){
+            do{
+                var id  = c.getInt(0)
+                var ziyaretTarihi = c.getString(c.getColumnIndex("ZiyaretTarihi"))
+                var aciklama =  c.getString(c.getColumnIndex("Aciklama"))
+                var gezilecekYerFK = c.getInt(c.getColumnIndex("GezilecekYerFK"))
+
+                ziyaret = Ziyaret(id,ziyaretTarihi,aciklama,gezilecekYerFK)
+                ziyaretList.add(ziyaret)
+
+            }while (c.moveToNext())
+
+        }
+
+        close()
+
+        return ziyaretList
+    }
+
+
 
     private fun tumGezilecekYerleriGetir() : Cursor { // bu dışarıdan çağrılmayacak
         val sorgu = "Select * from GezilecekYer"
@@ -100,13 +134,15 @@ class Operation(context: Context) {
         return GeziDatabase!!.rawQuery(sorgu,null)
     }
 
-
+/*
     private fun tumZiyaretleriGetir() : Cursor { // bu dışarıdan çağrılmayacak
         val sorgu = "Select * from Ziyaret"
 
         return GeziDatabase!!.rawQuery(sorgu,null)
 
     }
+
+ */
 
     // tüm gezilecek yerleri getirir.
     @SuppressLint("Range")
@@ -135,7 +171,7 @@ class Operation(context: Context) {
                     oncelikDurumu = OncelikDurumu.YUKSEK
                 }
 
-                gezilecekYer = GezilecekYer(yerAdi,kisaTanim,aciklama,null,kapakFotografi,oncelikDurumu,id)
+                gezilecekYer = GezilecekYer(yerAdi,kisaTanim,aciklama,null,kapakFotografi,oncelikDurumu,id=id)
                 gezilecekYerList.add(gezilecekYer)
 
             }while (c.moveToNext())
@@ -177,10 +213,10 @@ class Operation(context: Context) {
                 oncelikDurumu = OncelikDurumu.YUKSEK
             }
 
-            gezilecekYer = GezilecekYer(yerAdi,kisaTanim,aciklama,null,kapakFotografi,oncelikDurumu,id)
+            gezilecekYer = GezilecekYer(yerAdi,kisaTanim,aciklama,null,kapakFotografi,oncelikDurumu,id=id)
 
         }else{
-           gezilecekYer = GezilecekYer("0","",null,null,0,OncelikDurumu.DUSUK,-1)
+           gezilecekYer = GezilecekYer("0","",null,null,0,OncelikDurumu.DUSUK,id=-1)
         }
         close()
         return gezilecekYer

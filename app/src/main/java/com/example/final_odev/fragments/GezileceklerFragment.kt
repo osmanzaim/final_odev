@@ -41,6 +41,7 @@ class GezileceklerFragment : Fragment() {
         binding.rvGezilecekYerler.adapter!!.notifyDataSetChanged()
 
 
+
     }
 
 
@@ -67,7 +68,7 @@ class GezileceklerFragment : Fragment() {
         binding.rvGezilecekYerler.apply{
             layoutManager = GridLayoutManager(requireActivity().applicationContext,1)
             gezilecekYerList = GezilecekYerLogic.tumGezilecekYerleriGetir(requireContext())
-            adapter = CardAdapter(gezilecekYerList,"gezilecek", ::cardClickListener)
+            adapter = CardAdapter(gezilecekYerList,"gezilecek", ::cardClickListener,requireContext())
         }
     }
 

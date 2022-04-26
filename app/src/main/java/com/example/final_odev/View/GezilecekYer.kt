@@ -14,6 +14,7 @@ class GezilecekYer(
     var imageList: List<String>?,
     var kapakFotografi:Int,
     var oncelik: OncelikDurumu,
+    var ziyaretTarihi:String?=null,
     var id: Int?
 ) {
 

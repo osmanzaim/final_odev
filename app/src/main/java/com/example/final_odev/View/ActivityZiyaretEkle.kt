@@ -23,6 +23,8 @@ class ActivityZiyaretEkle : AppCompatActivity() {
 
         //ziyaret ekle sayfasini devam ettir.
 
+        //burada ziyaret ekle butonuna basıldığında artık bir konuma ziyaret edildi yani gezdiklerim listesine o konumu ekleyip, gezdiklerim fragmentini güncelleyeceğiz.
+
     }
 
     private fun btnZiyaretKaydetListener() {
