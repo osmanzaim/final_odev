@@ -43,10 +43,10 @@ class GezdiklerimFragment : Fragment() {
 
     fun gezdiklerimListesiDoldur() {
         val gezilecekYer2 = GezilecekYer("Mençuna Şelalesi","Büyük bir şelale","Doğa içerisinde büyük bir şelale.",null,R.drawable.mencuna_selalesi,
-            OncelikDurumu.ORTA)
+            OncelikDurumu.ORTA,45645)
         gezdigimYerlerListesi.add(gezilecekYer2)
         val gezilecekYer3 = GezilecekYer("Sümela Manastırı","Manastır","Trabzon'da bir manastır.",null,R.drawable.sumela_manastiri,
-            OncelikDurumu.DUSUK)
+            OncelikDurumu.DUSUK,346345)
         gezdigimYerlerListesi.add(gezilecekYer3)
     }
 

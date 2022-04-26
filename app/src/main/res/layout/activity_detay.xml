@@ -7,16 +7,17 @@
     android:background="@color/blue"
     tools:context=".fragments.DetayActivity">
 
+
     <View
         android:id="@+id/divider"
         android:layout_width="409dp"
         android:layout_height="4dp"
-        android:layout_marginTop="106dp"
+        android:layout_marginTop="76dp"
         android:background="@color/blue"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
     <TextView
         android:id="@+id/textView"
@@ -52,7 +53,7 @@
     <com.denzcoskun.imageslider.ImageSlider
         android:id="@+id/imgSlider"
         android:layout_width="match_parent"
-        android:layout_height="222dp"
+        android:layout_height="180dp"
         android:background="#DFDFDE"
         app:iss_auto_cycle="false"
         app:iss_corner_radius="5"
@@ -132,7 +133,7 @@
             android:text="Yer Kısa Açıklama"
             android:textColor="#4B4848"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/textView2"
             app:layout_constraintEnd_toEndOf="@+id/btnZiyaretEkle"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/tvOncelik"
@@ -180,7 +181,7 @@
             app:layout_constraintVertical_bias="1.0" />
 
         <TextView
-            android:id="@+id/tvYerKisaTanim"
+            android:id="@+id/tvZiyaretTarihi"
             android:layout_width="0dp"
             android:layout_height="56dp"
             android:layout_marginTop="12dp"
@@ -191,6 +192,7 @@
             android:textColor="#4B4848"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@+id/btnZiyaretEkle"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/tvOncelik"
             app:layout_constraintTop_toBottomOf="@+id/tvOncelik" />
 
@@ -201,10 +203,10 @@
             android:layout_marginBottom="8dp"
             android:text="Kisa Tanim Bilgisi"
             android:textColor="#9E9E9E"
-            app:layout_constraintBottom_toBottomOf="@+id/tvYerKisaTanim"
-            app:layout_constraintEnd_toEndOf="@+id/tvYerKisaTanim"
+            app:layout_constraintBottom_toBottomOf="@+id/tvZiyaretTarihi"
+            app:layout_constraintEnd_toEndOf="@+id/tvZiyaretTarihi"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/tvYerKisaTanim" />
+            app:layout_constraintStart_toStartOf="@+id/tvZiyaretTarihi" />
 
         <TextView
             android:id="@+id/tvKisaAciklamaBilgisi"
@@ -214,9 +216,9 @@
             android:text="Kisa Aciklama"
             android:textColor="#9E9E9E"
             android:lines="3"
-            app:layout_constraintEnd_toEndOf="@+id/tvYerKisaTanim"
+            app:layout_constraintEnd_toEndOf="@+id/tvZiyaretTarihi"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/tvYerKisaTanim"
+            app:layout_constraintStart_toStartOf="@+id/tvZiyaretTarihi"
             app:layout_constraintTop_toTopOf="@+id/yerKisaAciklama" />
 
         <androidx.appcompat.widget.AppCompatButton
@@ -229,8 +231,8 @@
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="@+id/tvYerKisaTanim"
-            app:layout_constraintTop_toTopOf="@+id/tvYerKisaTanim" />
+            app:layout_constraintEnd_toEndOf="@+id/tvZiyaretTarihi"
+            app:layout_constraintTop_toTopOf="@+id/tvZiyaretTarihi" />
 
         <TextView
             android:id="@+id/textView2"

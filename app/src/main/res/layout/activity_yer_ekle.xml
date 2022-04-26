@@ -97,7 +97,7 @@
         app:cardCornerRadius="6dp"
         app:layout_constraintEnd_toEndOf="@+id/cardViewOncelik"
         app:layout_constraintStart_toStartOf="@+id/cardViewOncelik"
-        app:layout_constraintTop_toBottomOf="@+id/cardViewOncelik" >
+        app:layout_constraintTop_toBottomOf="@+id/cardViewOncelik">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -106,14 +106,14 @@
 
             <TextView
                 android:id="@+id/tv_yerAdi"
-                android:layout_marginTop="12dp"
-                android:layout_marginStart="15dp"
                 android:layout_width="match_parent"
-                android:textSize="12sp"
-                android:textColor="#4B4848"
-                android:textStyle="bold"
                 android:layout_height="wrap_content"
-                android:text="Yer Adı" />
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="12dp"
+                android:text="Yer Adı"
+                android:textColor="#4B4848"
+                android:textSize="12sp"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/et_yerAdi"
@@ -121,10 +121,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
                 android:backgroundTint="#00FFFFFF"
                 android:paddingStart="0dp"
-                android:layout_marginBottom="8dp"
-                android:text="Yer adı giriniz."
+                android:hint="Yer adı giriniz."
                 android:textColor="#9E9E9E"
                 android:textSize="12sp"
                 android:textStyle="bold" />
@@ -166,7 +166,7 @@
                 android:layout_marginBottom="8dp"
                 android:backgroundTint="#00FFFFFF"
                 android:paddingStart="0dp"
-                android:text="Tanım bilgisi giriniz."
+                android:hint="Tanım bilgisi giriniz."
                 android:textColor="#9E9E9E"
                 android:textSize="12sp"
                 android:textStyle="bold" />
@@ -174,11 +174,12 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:layout_width="0dp"
         android:id="@+id/cardview_yerKisaAciklama"
-        android:layout_height="150dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginTop="13dp"
         app:cardCornerRadius="6dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintEnd_toEndOf="@+id/carview_yerAdi"
         app:layout_constraintStart_toStartOf="@+id/carview_yerAdi"
         app:layout_constraintTop_toBottomOf="@+id/cardview_yerKisaTanim">
@@ -208,8 +209,8 @@
                 android:layout_marginBottom="8dp"
                 android:backgroundTint="#00FFFFFF"
                 android:paddingStart="0dp"
+                android:hint="Kısa açıklama giriniz.Kısa açıklama giriniz"
                 android:textAlignment="viewStart"
-                android:text="Kısa açıklama giriniz."
                 android:textColor="#9E9E9E"
                 android:textSize="12sp"
                 android:textStyle="bold" />
@@ -228,6 +229,13 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/cardview_yerKisaAciklama"
         app:layout_constraintStart_toStartOf="@+id/cardview_yerKisaAciklama" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.85" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

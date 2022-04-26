@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="4dp"
             android:layout_marginTop="106dp"
-            android:background="#9DD71C"
+            android:background="@color/blue"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -31,21 +31,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="56dp"
             android:text="Gezilecekler"
-            android:textColor="#9DD71C"
+            android:textColor="@color/blue"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-
-        <ImageView
-            android:id="@+id/imageViewGeri"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            app:layout_constraintBottom_toBottomOf="@+id/textView"
-            app:layout_constraintStart_toStartOf="@+id/guideline4"
-            app:srcCompat="@drawable/geri_ok" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline4"

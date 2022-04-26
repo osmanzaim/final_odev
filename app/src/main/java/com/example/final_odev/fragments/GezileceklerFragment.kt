@@ -77,6 +77,7 @@ class GezileceklerFragment : Fragment() {
         //nesneyi aldık.
 
         val intent = Intent (activity, DetayActivity::class.java)
+        intent.putExtra("id",gezilecekYer.id)
         startActivity(intent)
 
         /*

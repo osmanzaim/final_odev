@@ -14,7 +14,7 @@ class GezilecekYer(
     var imageList: List<String>?,
     var kapakFotografi:Int,
     var oncelik: OncelikDurumu,
-    var id: Int? = gezilecekYerList.size,
+    var id: Int?
 ) {
 
 

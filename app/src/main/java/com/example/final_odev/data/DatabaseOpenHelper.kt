@@ -10,6 +10,7 @@ class DatabaseOpenHelper(context: Context, name:String, factory:SQLiteDatabase.C
         //ziyaret listesini yukarıdaki sorguya eklemedim, aşağıda ziyaret tablosunda foreign key var zaten oradan id si uygun olanları çekeceğiz.
         // fotograf listesi için de ayrı table oluşturup Foregin key ile tutacağız.
         val sorgu2 = "CREATE TABLE Ziyaret(Id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, ZiyaretTarihi TEXT, Aciklama TEXT, GezilecekYerFK INTEGER, FOREIGN KEY(GezilecekYerFK) REFERENCES GezilecekYer(Id))"
+
         p0.execSQL(sorgu)
         p0.execSQL(sorgu2)
     }

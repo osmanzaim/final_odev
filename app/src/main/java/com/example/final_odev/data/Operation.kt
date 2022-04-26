@@ -58,6 +58,42 @@ class Operation(context: Context) {
 
     }
 
+    private fun fkyeGoreZiyaret(foreignKey:Int):Cursor{
+        val sorgu = "Select * from Ziyaret WHERE GezilecekYerFK = $foreignKey"
+        return GeziDatabase!!.rawQuery(sorgu,null)
+    }
+
+    @SuppressLint("Range")
+    fun fkyeGoreZiyaretGetir(foreignKey: Int) : ArrayList<Ziyaret>{
+        val ziyaretList = ArrayList<Ziyaret>()
+        var ziyaret : Ziyaret
+
+        open()
+        var c : Cursor = fkyeGoreZiyaret(foreignKey)
+
+
+        if(c.moveToFirst()){
+            do{
+                var id  = c.getInt(0)
+                var ziyaretTarihi = c.getString(c.getColumnIndex("ZiyaretTarihi"))
+                var aciklama =  c.getString(c.getColumnIndex("Aciklama"))
+                var gezilecekYerFK = c.getInt(c.getColumnIndex("GezilecekYerFK"))
+
+                ziyaret = Ziyaret(id,ziyaretTarihi,aciklama,gezilecekYerFK)
+                ziyaretList.add(ziyaret)
+
+            }while (c.moveToNext())
+
+        }
+
+        close()
+
+        return ziyaretList
+
+    }
+
+
+
     private fun tumGezilecekYerleriGetir() : Cursor { // bu dışarıdan çağrılmayacak
         val sorgu = "Select * from GezilecekYer"
 
@@ -69,6 +105,7 @@ class Operation(context: Context) {
         val sorgu = "Select * from Ziyaret"
 
         return GeziDatabase!!.rawQuery(sorgu,null)
+
     }
 
     // tüm gezilecek yerleri getirir.
@@ -108,6 +145,46 @@ class Operation(context: Context) {
         close()
 
         return gezilecekYerList
+    }
+
+
+    private fun idYeGoreGezilecekYer(id:Int) : Cursor {
+        val sorgu = "Select * from GezilecekYer WHERE Id=$id"
+
+        var selectionArgs = arrayOf(id)
+        return GeziDatabase!!.rawQuery(sorgu,null)
+    }
+    @SuppressLint("Range")
+    fun idyeGoreGezilecekYerGetir(id:Int) : GezilecekYer{
+        var gezilecekYer : GezilecekYer
+
+        open()
+        val c:Cursor = idYeGoreGezilecekYer(id)
+
+        if(c.moveToFirst()){
+            var id  = c.getInt(0)
+            var yerAdi = c.getString(c.getColumnIndex("YerAdi"))
+            var kisaTanim =  c.getString(c.getColumnIndex("KisaTanim"))
+            var aciklama =  c.getString(c.getColumnIndex("Aciklama"))
+            var oncelik = c.getString(c.getColumnIndex("OncelikDurumu"))
+            var kapakFotografi = c.getInt(c.getColumnIndex("KapakFotografi"))
+            var oncelikDurumu : OncelikDurumu
+            if(oncelik == OncelikDurumu.DUSUK.toString()){
+                oncelikDurumu = OncelikDurumu.DUSUK
+            }else if(oncelik == OncelikDurumu.ORTA.toString()){
+                oncelikDurumu = OncelikDurumu.ORTA
+            }else{
+                oncelikDurumu = OncelikDurumu.YUKSEK
+            }
+
+            gezilecekYer = GezilecekYer(yerAdi,kisaTanim,aciklama,null,kapakFotografi,oncelikDurumu,id)
+
+        }else{
+           gezilecekYer = GezilecekYer("0","",null,null,0,OncelikDurumu.DUSUK,-1)
+        }
+        close()
+        return gezilecekYer
+
     }
 
 

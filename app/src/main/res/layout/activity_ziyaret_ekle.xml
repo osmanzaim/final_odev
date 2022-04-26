@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#45989898"
+    tools:context=".View.ActivityZiyaretEkle">
+
+    <TextView
+        android:id="@+id/tvZiyaretAciklamasi"
+        android:layout_width="0dp"
+        android:layout_height="157dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/aciklama_background"
+        android:paddingLeft="2dp"
+        android:paddingTop="2dp"
+        android:text="Ziyaret Açıklaması"
+        android:textColor="#4B4848"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/rv_fotoEkle"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/rv_fotoEkle"
+        app:layout_constraintTop_toBottomOf="@+id/tvZiyaretTarihi" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@color/main_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+    </View>
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#00FFFFFF"
+        android:minHeight="48dp"
+        app:layout_constraintBottom_toBottomOf="@+id/view"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/icon_back" />
+
+    <TextView
+        android:id="@+id/tv_yerEkleTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:lines="2"
+        android:text="Ziyaret \nEkle"
+        android:textAlignment="center"
+        android:textColor="#FFFBFB"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_fotoEkle"
+        android:layout_width="match_parent"
+        android:layout_height="128dp"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view" />
+
+    <TextView
+        android:id="@+id/tvZiyaretTarihi"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/aciklama_background"
+        android:paddingLeft="2dp"
+        android:paddingTop="2dp"
+        android:text="Ziyaret Tarihi"
+        android:textColor="#4B4848"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/rv_fotoEkle"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/rv_fotoEkle"
+        app:layout_constraintTop_toBottomOf="@+id/rv_fotoEkle" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/aciklama_background"
+        android:backgroundTint="#00FFFFFF"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="@+id/tvZiyaretTarihi"
+        app:layout_constraintEnd_toEndOf="@+id/rv_fotoEkle"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/rv_fotoEkle" />
+
+    <EditText
+        android:id="@+id/ptZiyaretTarihi"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/aciklama_background"
+        android:backgroundTint="#00FFFFFF"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="@+id/tvZiyaretTarihi"
+        app:layout_constraintEnd_toEndOf="@+id/rv_fotoEkle"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/rv_fotoEkle" />
+
+    <EditText
+        android:id="@+id/ptZiyaretAciklamasi"
+        android:layout_width="0dp"
+        android:layout_height="110dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/aciklama_background"
+        android:backgroundTint="#00FFFFFF"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="@+id/tvZiyaretAciklamasi"
+        app:layout_constraintEnd_toEndOf="@+id/rv_fotoEkle"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/rv_fotoEkle" />
+
+    <Button
+        android:id="@+id/btnZiyaretKaydet"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="40dp"
+        android:text="Kaydet"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/tvZiyaretAciklamasi"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/tvZiyaretAciklamasi" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

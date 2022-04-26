@@ -16,5 +16,10 @@ class GezilecekYerLogic {
         fun tumGezilecekYerleriGetir(context: Context): ArrayList<GezilecekYer>{
             return Operation(context).gezilecekYerleriGetir()
         }
+
+
+        fun idyeGoreGetir(context:Context, id:Int) : GezilecekYer{
+            return Operation(context).idyeGoreGezilecekYerGetir(id)
+        }
     }
 }
