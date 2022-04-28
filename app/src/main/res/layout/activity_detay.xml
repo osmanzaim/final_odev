@@ -29,39 +29,19 @@
         app:layout_constraintGuide_percent="0.05" />
 
 
-    <com.denzcoskun.imageslider.ImageSlider
-        android:id="@+id/imgSlider"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvFotoSlider"
         android:layout_width="match_parent"
         android:layout_height="180dp"
         android:background="#DFDFDE"
-        app:iss_auto_cycle="false"
-        app:iss_corner_radius="5"
-        app:iss_delay="0"
-        app:iss_error_image="@color/black"
-        app:iss_placeholder="@color/blue"
-        app:iss_selected_dot="@drawable/default_selected_dot"
-        app:iss_unselected_dot="@drawable/default_unselected_dot"
+        android:nestedScrollingEnabled="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider"
         tools:ignore="MissingConstraints">
 
-        <TextView
-            android:id="@+id/tvFotografinTarihi"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-
-            android:background="@drawable/aciklama_background"
-            android:paddingLeft="2dp"
-            android:paddingTop="2dp"
-            android:paddingBottom="2dp"
-            android:text="Tarih"
-            android:textColor="#4B4848"
-            android:textStyle="bold" />
-    </com.denzcoskun.imageslider.ImageSlider>
+    </androidx.recyclerview.widget.RecyclerView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton"
@@ -108,12 +88,12 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/ziyaretEkleLayout"
-        android:layout_width="409dp"
-        android:layout_height="197dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="#DFDFDE"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgSlider">
+        app:layout_constraintTop_toBottomOf="@+id/rvFotoSlider">
 
         <TextView
             android:id="@+id/yerKisaAciklama"
@@ -241,25 +221,30 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/blue"
-        app:layout_constraintBottom_toTopOf="@+id/imgSlider"
+        app:layout_constraintBottom_toTopOf="@+id/rvFotoSlider"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
 
         <TextView
             android:id="@+id/tvYerBasligi"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:gravity="center"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="56dp"
             android:layout_marginBottom="8dp"
             android:lines="2"
-            android:text="Yer Adı\n 2 satır"
+            android:text="Yer Adı"
             android:textColor="@color/white"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toEndOf="@+id/imageView" />
 
         <ImageView
             android:id="@+id/imageView"

@@ -22,5 +22,14 @@ class ZiyaretLogic {
             var operation = Operation(context)
             return operation.fkyeGoreZiyaretGetir(foreignKey)
         }
+
+
+        fun ziyaretGetirOzel( context: Context, ziyaretTarihi:String, aciklama:String, id:Int) :Ziyaret
+        {
+            var operation = Operation(context)
+            return operation.ziyaretiGetirOzel(ziyaretTarihi, aciklama,id)[0]
+        }
+
+
     }
 }

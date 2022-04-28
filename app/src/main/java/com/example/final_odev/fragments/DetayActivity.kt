@@ -3,6 +3,9 @@ package com.example.final_odev.fragments
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -10,17 +13,18 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
 import com.example.final_odev.MainActivity
 import com.example.final_odev.R
-import com.example.final_odev.View.ActivityZiyaretEkle
+import com.example.final_odev.View.*
+import com.example.final_odev.View.Adapter.SliderAdapter
 import com.example.final_odev.View.Adapter.ZiyaretAdapter
-import com.example.final_odev.View.OncelikDurumu
-import com.example.final_odev.View.Ziyaret
 import com.example.final_odev.databinding.ActivityDetayBinding
 import com.example.final_odev.databinding.FragmentGezdiklerimBinding
 import com.example.final_odev.databinding.TabLayoutBinding
+import com.example.final_odev.viewmodel.FotografLogic
 import com.example.final_odev.viewmodel.GezilecekYerLogic
 import com.example.final_odev.viewmodel.ZiyaretLogic
 import com.google.android.material.tabs.TabLayoutMediator
@@ -28,6 +32,13 @@ import com.google.android.material.tabs.TabLayoutMediator
 class DetayActivity : AppCompatActivity() {
     lateinit var binding: ActivityDetayBinding
     lateinit var ziyaretListesi: ArrayList<Ziyaret>
+    lateinit var yerAdi:String
+    lateinit var gezilecekYer:GezilecekYer
+    var count = 0
+    var imgList :ArrayList<Fotograf>?= null
+
+    var gezdigimYerlerListesi = arrayListOf<GezilecekYer>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetayBinding.inflate(layoutInflater)
@@ -38,12 +49,12 @@ class DetayActivity : AppCompatActivity() {
         }.attach()
         tabOlustur()
 
-        imgSliderOlustur()
+
 
         gelenClassaGoreVeriDoldur()
         ziyaretDoldur()
         ziyaretGecmisiRvHazirla()
-
+        imgSliderOlustur()
         btnZiyaretEkleListener()
 
         btnGeriOkuListener()
@@ -88,8 +99,9 @@ class DetayActivity : AppCompatActivity() {
     fun gelenClassaGoreVeriDoldur() {
 
         var id = intent.getIntExtra("id",-1)
-        Toast.makeText(this,id.toString(),Toast.LENGTH_SHORT).show()
-        var gezilecekYer = GezilecekYerLogic.idyeGoreGetir(this,id)
+        //Toast.makeText(this,id.toString(),Toast.LENGTH_SHORT).show()
+        gezilecekYer = GezilecekYerLogic.idyeGoreGetir(this,id)
+        yerAdi = gezilecekYer.yerAdi
 
         binding.tvYerBasligi.text = gezilecekYer.yerAdi
 
@@ -107,16 +119,93 @@ class DetayActivity : AppCompatActivity() {
         // veriyi aldık.
         //Toast.makeText(this,gezilecekYer.kisaTanim,Toast.LENGTH_LONG).show()
     }
+    fun geri(){
+        if(count == 0) {
+            count = imgList!!.size-1
+            binding.rvFotoSlider.scrollToPosition(count)
 
+
+        }else {
+            count -= 1
+            binding.rvFotoSlider.scrollToPosition(count)
+        }
+    }
+    fun ileri(){
+        if(count < imgList!!.size) {
+            count += 1
+            binding.rvFotoSlider.scrollToPosition(count)
+        }
+        if(count == imgList!!.size){
+            count = 0
+            binding.rvFotoSlider.scrollToPosition(count)
+        }
+    }
 
     fun imgSliderOlustur() {
-        var imageList = ArrayList<SlideModel>()
 
-        imageList.add(SlideModel(R.drawable.karagol,""))
-        imageList.add(SlideModel(R.drawable.mencuna_selalesi,""))
-        imageList.add(SlideModel(R.drawable.sumela_manastiri,""))
+        var geldigiFragment = intent.getStringExtra("geldigiFragment")
+        var bitmap:Bitmap
 
-        binding.imgSlider.setImageList(imageList,ScaleTypes.FIT)
+        if(geldigiFragment == null){ //gezileceklerden geldiyse detay sayfası
+            imgList = FotografLogic.yerAdinaGoreGetir(this,yerAdi)
+            binding.rvFotoSlider.apply{
+                var lm = object : LinearLayoutManager(this@DetayActivity){
+                    override fun canScrollHorizontally(): Boolean {
+                        return false
+                    }
+                }
+                lm.orientation = LinearLayoutManager.HORIZONTAL
+                layoutManager = lm
+                var fragment =""
+                var gelenVeri = intent.getStringExtra("durum")
+                if(gelenVeri!=null){
+                    fragment = "gezilecekler"
+                }
+
+                var tarih = intent.getStringExtra("tarih")
+                adapter = SliderAdapter(this@DetayActivity,imgList!!,tarih,gelenVeri!!,::geri,::ileri)
+            }
+        }else { //gezdiklerimden geldiyse detay sayfası.
+
+            //var fk = intent.getIntExtra("tarih",-1)
+
+            //var x = ZiyaretLogic.fkyeGoreGetir(this,fk)
+
+            var gy = gezilecekYer.ziyaretTarihi //burası yanlış. bunu ziyaretten almamız lazım.
+
+            GezdiklerimFragment.gezdigimYerlerListesi.clear()
+            var ziyaretListesi = ZiyaretLogic.tumunuGetir(this)
+
+            for(item in ziyaretListesi){
+
+                var gezdigimYer = GezilecekYerLogic.idyeGoreGetir(this,item.gezilecekYerFK)
+                gezdigimYer.ziyaretTarihi = item.ziyaretTarihi
+
+            }
+            var ziyaret = ZiyaretLogic.fkyeGoreGetir(this,gezilecekYer.id!!)
+            var id = (gezilecekYer.id).toString()
+            var ziyaretTarihiveGezilecekId = gy+id
+            var imgList = FotografLogic.ziyaretAdinaGoreGetir(this, ziyaretTarihiveGezilecekId)
+            for (item in imgList) {
+                bitmap = DbBitmapUtility().getImage(item.fotoByteArray)
+                var drawable: Drawable = BitmapDrawable(resources, bitmap)
+                var uri = "drawable://$drawable"
+
+
+            }
+
+
+            //imageList.add(SlideModel(R.drawable.karagol,""))
+            //imageList.add(SlideModel(R.drawable.mencuna_selalesi,""))
+            //imageList.add(SlideModel(R.drawable.sumela_manastiri,""))
+
+
+        }
+
+        //imageList.add(SlideModel(R.drawable.karagol,""))
+        //imageList.add(SlideModel(R.drawable.mencuna_selalesi,""))
+        //imageList.add(SlideModel(R.drawable.sumela_manastiri,""))
+
 
     }
     private fun viewPagerOlustur() {

@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.final_odev.R
+import com.example.final_odev.View.DbBitmapUtility
 
 
 class YerEklemeViewHolder(itemView : View,var context:Context,var listSize:Int, var deleteItem : (position : Int) -> Unit, var addPhoto :(position : Int)-> Unit) : RecyclerView.ViewHolder(itemView) {
@@ -28,8 +29,11 @@ class YerEklemeViewHolder(itemView : View,var context:Context,var listSize:Int, 
         }
     }
 
-    fun bindData(resimId : Int, isLast : Boolean) {
-        yerEkleImageView.setImageResource(resimId)
+    fun bindData(fotoByteArray : ByteArray, isLast : Boolean) {
+
+        var bitmap = DbBitmapUtility().getImage(fotoByteArray)
+
+        yerEkleImageView.setImageBitmap(bitmap)
         imageButtonSil.setImageResource(R.drawable.ic_baseline_delete_24)
         if(isLast) {
             imageButtonSil.visibility = View.GONE

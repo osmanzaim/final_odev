@@ -11,6 +11,7 @@ import com.example.final_odev.R
 import com.example.final_odev.View.Adapter.CardAdapter
 import com.example.final_odev.View.GezilecekYer
 import com.example.final_odev.View.OncelikDurumu
+import com.example.final_odev.View.Ziyaret
 import com.example.final_odev.View.gezilecekYerList
 import com.example.final_odev.databinding.FragmentGezdiklerimBinding
 import com.example.final_odev.viewmodel.GezilecekYerLogic
@@ -20,6 +21,8 @@ class GezdiklerimFragment : Fragment() {
 
     companion object{
         var gezdigimYerlerListesi = arrayListOf<GezilecekYer>()
+        var ziyaretList = arrayListOf<Ziyaret>()
+
     }
     lateinit var binding:FragmentGezdiklerimBinding
 
@@ -53,13 +56,17 @@ class GezdiklerimFragment : Fragment() {
     fun yerleriBul() {
 
         gezdigimYerlerListesi.clear()
-        var ziyaretListesi = ZiyaretLogic.tumunuGetir(requireContext())
+        gezdigimYerlerListesi = GezilecekYerLogic.flagaGoreGetir(requireContext(),1)
 
-        for(item in ziyaretListesi){
+
+        /*
+          for(item in ziyaretListesi){
             var gezdigimYer = GezilecekYerLogic.idyeGoreGetir(requireContext(),item.gezilecekYerFK)
             gezdigimYer.ziyaretTarihi = item.ziyaretTarihi
             gezdigimYerlerListesi.add(gezdigimYer)
         }
+
+         */
 
 
     }
@@ -97,12 +104,22 @@ class GezdiklerimFragment : Fragment() {
     fun cardClickListener(gezilecekYer:GezilecekYer) {
 
         val intent = Intent (activity, DetayActivity::class.java)
+
+
         intent.putExtra("id",gezilecekYer.id)
+
+        //val tarih =gezilecekYer.ziyaretTarihi
+
+        val ziyaret = ZiyaretLogic.fkyeGoreGetir(requireContext(),gezilecekYer.id!!)
+        ziyaretList = ziyaret
+        intent.putExtra("tarih",ziyaret[0].ziyaretTarihi)
+        intent.putExtra("durum","gezdiklerim")
         startActivity(intent)
 
         //gezdiklerimin yenilenmesinde sorun var, uygulamayı açıp kapayınca yenileniyor ama diğer türlü olmuyor
 
     }
+
 
 
 

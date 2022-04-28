@@ -22,6 +22,7 @@ import com.example.final_odev.View.GezilecekYer
 import com.example.final_odev.View.gezilecekYerList
 import com.example.final_odev.databinding.FragmentGezileceklerBinding
 import com.example.final_odev.viewmodel.GezilecekYerLogic
+import com.example.final_odev.viewmodel.ZiyaretLogic
 
 class GezileceklerFragment : Fragment() {
 
@@ -38,6 +39,7 @@ class GezileceklerFragment : Fragment() {
     @SuppressLint("NotifyDataSetChanged")
     override fun onResume() {
         super.onResume()
+        rvHazirla()
         binding.rvGezilecekYerler.adapter!!.notifyDataSetChanged()
 
 
@@ -55,9 +57,9 @@ class GezileceklerFragment : Fragment() {
         rvHazirla()
 
         //Toast.makeText(requireContext(), gezilecekYerList.size.toString(), Toast.LENGTH_LONG).show()
-        if(gezilecekYerList.size>0){
-            Toast.makeText(requireContext(), gezilecekYerList[0].oncelik.toString(),Toast.LENGTH_LONG).show()
-        }
+        //if(gezilecekYerList.size>0){
+            //Toast.makeText(requireContext(), gezilecekYerList[0].oncelik.toString(),Toast.LENGTH_LONG).show()
+        //}
 
         return binding.root
     }
@@ -65,9 +67,11 @@ class GezileceklerFragment : Fragment() {
 
 
     fun rvHazirla() {
+
+
         binding.rvGezilecekYerler.apply{
             layoutManager = GridLayoutManager(requireActivity().applicationContext,1)
-            gezilecekYerList = GezilecekYerLogic.tumGezilecekYerleriGetir(requireContext())
+            gezilecekYerList = GezilecekYerLogic.flagaGoreGetir(requireContext(),0)
             adapter = CardAdapter(gezilecekYerList,"gezilecek", ::cardClickListener,requireContext())
         }
     }
@@ -79,6 +83,7 @@ class GezileceklerFragment : Fragment() {
 
         val intent = Intent (activity, DetayActivity::class.java)
         intent.putExtra("id",gezilecekYer.id)
+        intent.putExtra("durum","gezilecekler")
         startActivity(intent)
 
         /*

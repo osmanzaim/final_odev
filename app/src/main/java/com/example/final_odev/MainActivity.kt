@@ -1,15 +1,20 @@
 package com.example.final_odev
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.Instrumentation
 import android.content.Intent
+import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
+import androidx.core.content.FileProvider
 import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
@@ -53,6 +58,10 @@ class MainActivity : AppCompatActivity() {
         btnClickListener()
 
     }
+
+
+
+
 
 
 

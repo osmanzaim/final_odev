@@ -12,10 +12,12 @@ class GezilecekYer(
     var kisaTanim: String,
     var aciklama: String? = null,
     var imageList: List<String>?,
-    var kapakFotografi:Int,
+    var kapakFotografi:ByteArray,
     var oncelik: OncelikDurumu,
     var ziyaretTarihi:String?=null,
+    var flag:Int ?= null,
     var id: Int?
+
 ) {
 
 
