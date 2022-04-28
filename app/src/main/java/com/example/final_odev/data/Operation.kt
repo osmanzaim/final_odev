@@ -44,6 +44,42 @@ class Operation(context: Context) {
         return etkilenenKayit
 
     }
+    private fun fotografFKyeGore(fk:Int) : Cursor{
+        val sorgu = "Select * from Fotograf WHERE ZiyaretFK=$fk"
+        return GeziDatabase!!.rawQuery(sorgu,null)
+    }
+    @SuppressLint("Range")
+    fun fotograflariFkyeGetir(id:Int): ArrayList<Fotograf>{
+        val fotografList = ArrayList<Fotograf>()
+        var fotograf : Fotograf
+
+        open()
+        var c : Cursor = fotografFKyeGore(id)
+        if(c.moveToFirst()){
+            do{
+                var id  = c.getInt(0)
+                var FotoByteArray = c.getBlob(c.getColumnIndex("FotoByteArray"))
+                var yerAdi =  c.getString(c.getColumnIndex("YerAdi"))
+                var ziyaretAdi = c.getString(c.getColumnIndex("ZiyaretAdi"))
+                var ziyaretFK = c.getInt(c.getColumnIndex("ZiyaretFK"))
+                var yerFk = c.getInt(c.getColumnIndex("YerFK"))
+
+                fotograf = Fotograf(id,FotoByteArray,ziyaretFK,yerFk)
+                fotograf.yerAdi = yerAdi
+                fotograf.ziyaretAdi = ziyaretAdi
+                fotografList.add(fotograf)
+
+            }while (c.moveToNext())
+
+        }
+
+        close()
+
+        return fotografList
+    }
+
+
+
 
 
 

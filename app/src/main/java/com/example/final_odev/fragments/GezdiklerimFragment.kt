@@ -113,6 +113,7 @@ class GezdiklerimFragment : Fragment() {
         val ziyaret = ZiyaretLogic.fkyeGoreGetir(requireContext(),gezilecekYer.id!!)
         ziyaretList = ziyaret
         intent.putExtra("tarih",ziyaret[0].ziyaretTarihi)
+        //intent.putExtra("geldigiFragment","asd")
         intent.putExtra("durum","gezdiklerim")
         startActivity(intent)
 

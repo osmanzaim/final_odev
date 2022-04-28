@@ -24,5 +24,11 @@ class FotografLogic {
         }
 
 
+        fun fkyeGore(context:Context, fk:Int):ArrayList<Fotograf>{
+            val operation = Operation(context)
+            return operation.fotograflariFkyeGetir(fk)
+        }
+
+
     }
 }

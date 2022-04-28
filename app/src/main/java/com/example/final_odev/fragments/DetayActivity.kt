@@ -37,6 +37,8 @@ class DetayActivity : AppCompatActivity() {
     var count = 0
     var imgList :ArrayList<Fotograf>?= null
 
+    var fotoList = arrayListOf<Fotograf>()
+
     var gezdigimYerlerListesi = arrayListOf<GezilecekYer>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -171,28 +173,33 @@ class DetayActivity : AppCompatActivity() {
 
             //var x = ZiyaretLogic.fkyeGoreGetir(this,fk)
 
-            var gy = gezilecekYer.ziyaretTarihi //burası yanlış. bunu ziyaretten almamız lazım.
 
             GezdiklerimFragment.gezdigimYerlerListesi.clear()
-            var ziyaretListesi = ZiyaretLogic.tumunuGetir(this)
-
-            for(item in ziyaretListesi){
-
-                var gezdigimYer = GezilecekYerLogic.idyeGoreGetir(this,item.gezilecekYerFK)
-                gezdigimYer.ziyaretTarihi = item.ziyaretTarihi
-
+            for(item in GezdiklerimFragment.ziyaretList){
+                fotoList += FotografLogic.fkyeGore(this, item.id!!)
             }
-            var ziyaret = ZiyaretLogic.fkyeGoreGetir(this,gezilecekYer.id!!)
-            var id = (gezilecekYer.id).toString()
-            var ziyaretTarihiveGezilecekId = gy+id
-            var imgList = FotografLogic.ziyaretAdinaGoreGetir(this, ziyaretTarihiveGezilecekId)
-            for (item in imgList) {
-                bitmap = DbBitmapUtility().getImage(item.fotoByteArray)
-                var drawable: Drawable = BitmapDrawable(resources, bitmap)
-                var uri = "drawable://$drawable"
 
+            binding.rvFotoSlider.apply{
+                var lm = object : LinearLayoutManager(this@DetayActivity){
+                    override fun canScrollHorizontally(): Boolean {
+                        return false
+                    }
+                }
+                lm.orientation = LinearLayoutManager.HORIZONTAL
+                layoutManager = lm
+                var fragment =""
+                var gelenVeri = intent.getStringExtra("durum")
+                if(gelenVeri!=null){
+                    fragment = "gezilecekler"
+                }
 
+                var tarih = intent.getStringExtra("tarih")
+                adapter = SliderAdapter(this@DetayActivity,fotoList!!,tarih,gelenVeri!!,::geri,::ileri)
             }
+
+
+
+
 
 
             //imageList.add(SlideModel(R.drawable.karagol,""))

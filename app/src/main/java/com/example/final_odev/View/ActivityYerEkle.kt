@@ -82,95 +82,117 @@ class ActivityYerEkle : AppCompatActivity() {
     private fun btnKaydetClickListener() {
         binding.btnYerKaydet.setOnClickListener {
 
-            var yerAdi = binding.etYerAdi.text.toString()
-            var yerKisaTanim = binding.etYerKisaTanim.text.toString()
-            var kisaAciklama = binding.etYerKisaAciklama.text.toString()
-            var oncelik : OncelikDurumu
-            var flagx = 0
-            var kapakFotografi : ByteArray = DbBitmapUtility().getBytes(fotoBitmap!!)
+            if(fotograf == null){
+                hataAlert()
+            }else{
+                var yerAdi = binding.etYerAdi.text.toString()
+                var yerKisaTanim = binding.etYerKisaTanim.text.toString()
+                var kisaAciklama = binding.etYerKisaAciklama.text.toString()
+                var oncelik : OncelikDurumu
+                var flagx = 0
+                var kapakFotografi : ByteArray = DbBitmapUtility().getBytes(fotoBitmap!!)
 
-            for(i in 0 until imageList.size){
+                for(i in 0 until imageList.size){
 
-                if(i == 0){
-                    kapakFotografi = imageList[i]
+                    if(i == 0){
+                        kapakFotografi = imageList[i]
+                    }
+                    fotograf = Fotograf(null,imageList[i],null,null)
+                    fotograf!!.yerAdi = yerAdi
+                    fotograf!!.ziyaretAdi = null
+                    FotografLogic.ekle(this,fotograf!!)
                 }
-                fotograf = Fotograf(null,imageList[i],null,null)
+
+
+
+
+
+
+                if(oncelikDurumu == OncelikDurumu.YUKSEK.toString()){
+                    oncelik = OncelikDurumu.YUKSEK
+                }else if(oncelikDurumu == OncelikDurumu.ORTA.toString()){
+                    oncelik = OncelikDurumu.ORTA
+                }else{
+                    oncelik = OncelikDurumu.DUSUK
+                }
+                /*
+                 if(imageList.size == 1) {
+                    kapakFotografi = R.drawable.union
+                }else {
+                    kapakFotografi = imageList.get(0)
+                }
+                 */
+
+
+
+
+
+                var gezilecekYer = GezilecekYer(yerAdi,yerKisaTanim,kisaAciklama,null,
+                    kapakFotografi, oncelik,id=null, flag=flagx)
+
                 fotograf!!.yerAdi = yerAdi
-                fotograf!!.ziyaretAdi = null
-                FotografLogic.ekle(this,fotograf!!)
+
+
+                //FotografLogic.ekle(this,fotograf!!)
+                //veriyi çekerken yugulama çöküyor.
+                var liste = FotografLogic.yerAdinaGoreGetir(this,yerAdi)
+                //Toast.makeText(this,liste.size.toString(),Toast.LENGTH_SHORT).show()
+
+
+
+                //bytearray olarak veritabanına kaydettik.
+                //veritabanından alırken de bytearray olarak alıp, gezilecek yer classına verdik.
+                //şimdi bytearrayi bitmape donusturup imageviewa atmamız gerekiyor.
+
+
+                /*
+                 if(::fotoUri.isInitialized){
+                    var gezilecekYer = GezilecekYer(yerAdi,yerKisaTanim,kisaAciklama,null,
+                        fotoUri.toString(), oncelik,id=null)
+                }else{
+                    var gezilecekYer = GezilecekYer(yerAdi,yerKisaTanim,kisaAciklama,null,
+                        kapakFotografi, oncelik,id=null)
+                }
+                 */
+
+
+
+
+                GezilecekYerLogic.ekle(this,gezilecekYer)
+
+
+                //var arrayList = GezilecekYerLogic.tumGezilecekYerleriGetir(this)
+                //Toast.makeText(this,arrayList.size.toString(), Toast.LENGTH_LONG).show()
+
+
+
+                val intent = Intent()
+                setResult(RESULT_OK, intent)
+                finish()
+
+
             }
-
-
-
-
-
-
-            if(oncelikDurumu == OncelikDurumu.YUKSEK.toString()){
-                oncelik = OncelikDurumu.YUKSEK
-            }else if(oncelikDurumu == OncelikDurumu.ORTA.toString()){
-                oncelik = OncelikDurumu.ORTA
-            }else{
-                oncelik = OncelikDurumu.DUSUK
-            }
-            /*
-             if(imageList.size == 1) {
-                kapakFotografi = R.drawable.union
-            }else {
-                kapakFotografi = imageList.get(0)
-            }
-             */
-
-
-
-
-
-            var gezilecekYer = GezilecekYer(yerAdi,yerKisaTanim,kisaAciklama,null,
-                kapakFotografi, oncelik,id=null, flag=flagx)
-
-            fotograf!!.yerAdi = yerAdi
-
-
-            //FotografLogic.ekle(this,fotograf!!)
-            //veriyi çekerken yugulama çöküyor.
-            var liste = FotografLogic.yerAdinaGoreGetir(this,yerAdi)
-            //Toast.makeText(this,liste.size.toString(),Toast.LENGTH_SHORT).show()
-
-
-
-            //bytearray olarak veritabanına kaydettik.
-            //veritabanından alırken de bytearray olarak alıp, gezilecek yer classına verdik.
-            //şimdi bytearrayi bitmape donusturup imageviewa atmamız gerekiyor.
-
-
-            /*
-             if(::fotoUri.isInitialized){
-                var gezilecekYer = GezilecekYer(yerAdi,yerKisaTanim,kisaAciklama,null,
-                    fotoUri.toString(), oncelik,id=null)
-            }else{
-                var gezilecekYer = GezilecekYer(yerAdi,yerKisaTanim,kisaAciklama,null,
-                    kapakFotografi, oncelik,id=null)
-            }
-             */
-
-
-
-
-            GezilecekYerLogic.ekle(this,gezilecekYer)
-
-
-             //var arrayList = GezilecekYerLogic.tumGezilecekYerleriGetir(this)
-            //Toast.makeText(this,arrayList.size.toString(), Toast.LENGTH_LONG).show()
-
-            val intent = Intent()
-            setResult(RESULT_OK, intent)
-            finish()
-
 
         }
 
 
 
 
+
+    }
+
+    fun hataAlert(){
+
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Fotoğraf bulunamadı")
+        builder.setMessage("Fotoğraf ekleyin.")
+//builder.setPositiveButton("OK", DialogInterface.OnClickListener(function = x))
+
+        builder.setPositiveButton("Tamam") { dialog, which ->
+
+        }
+
+        builder.show()
     }
 
     fun init() {
