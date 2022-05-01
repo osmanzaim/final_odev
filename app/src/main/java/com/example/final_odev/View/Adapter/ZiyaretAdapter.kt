@@ -3,8 +3,7 @@ package com.example.final_odev.View.Adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.final_odev.View.Ziyaret
-import com.example.final_odev.View.viewholder.CardViewHolder
+import com.example.final_odev.View.views.Ziyaret
 import com.example.final_odev.View.viewholder.ZiyaretViewHolder
 import com.example.final_odev.databinding.ZiyaretCardCellBinding
 

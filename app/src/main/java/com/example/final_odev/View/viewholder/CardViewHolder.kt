@@ -1,28 +1,13 @@
 package com.example.final_odev.View.viewholder
 
-import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.BitmapFactory
-import android.net.Uri
-import android.net.Uri.decode
-import android.os.Build
 import android.view.View
-import android.webkit.URLUtil.decode
-import androidx.annotation.RequiresApi
-import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import com.example.final_odev.R
-import com.example.final_odev.View.ActivityYerEkle
-import com.example.final_odev.View.DbBitmapUtility
-import com.example.final_odev.View.GezilecekYer
-import com.example.final_odev.View.OncelikDurumu
+import com.example.final_odev.View.views.DbBitmapUtility
+import com.example.final_odev.View.views.GezilecekYer
+import com.example.final_odev.View.views.OncelikDurumu
 import com.example.final_odev.databinding.CardItemBinding
-import com.example.final_odev.viewmodel.ZiyaretLogic
-import java.lang.Byte.decode
-import java.lang.Integer.decode
-import java.lang.Long.decode
-import java.net.URLDecoder.decode
-import java.util.*
 
 class CardViewHolder(val cardItemBinding:CardItemBinding, var listener:(GezilecekYer)->Unit) : RecyclerView.ViewHolder(cardItemBinding.root) {
     lateinit var gezilecekYerObjesi : GezilecekYer

@@ -1,13 +1,13 @@
 package com.example.final_odev.viewmodel
 
 import android.content.Context
-import com.example.final_odev.View.Fotograf
+import com.example.final_odev.View.views.Fotograf
 import com.example.final_odev.data.Operation
 
 class FotografLogic {
 
     companion object{
-        fun ekle(context: Context, fotograf:Fotograf){
+        fun ekle(context: Context, fotograf: Fotograf){
             val operation = Operation(context)
             operation.fotografEkle(fotograf)
         }

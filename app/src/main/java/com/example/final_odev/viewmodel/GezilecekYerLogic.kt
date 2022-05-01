@@ -1,7 +1,7 @@
 package com.example.final_odev.viewmodel
 
 import android.content.Context
-import com.example.final_odev.View.GezilecekYer
+import com.example.final_odev.View.views.GezilecekYer
 import com.example.final_odev.data.Operation
 
 class GezilecekYerLogic {

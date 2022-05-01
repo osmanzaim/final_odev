@@ -4,14 +4,11 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.final_odev.R
-import com.example.final_odev.View.Fotograf
-import com.example.final_odev.View.viewholder.CardViewHolder
+import com.example.final_odev.View.views.Fotograf
 import com.example.final_odev.View.viewholder.SliderViewHolder
-import com.example.final_odev.databinding.CardItemBinding
 import com.example.final_odev.databinding.RvFotoSliderBinding
 
-class SliderAdapter(var context: Context, var fotoList : ArrayList<Fotograf>,var tarih:String?, var fragment : String, var clickSliderGeri:() -> Unit, var clickSliderIleri:()-> Unit): RecyclerView.Adapter<SliderViewHolder>() {
+class SliderAdapter(var context: Context, var fotoList : ArrayList<Fotograf>, var tarih:String?, var fragment : String, var clickSliderGeri:() -> Unit, var clickSliderIleri:()-> Unit): RecyclerView.Adapter<SliderViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SliderViewHolder {
 
 

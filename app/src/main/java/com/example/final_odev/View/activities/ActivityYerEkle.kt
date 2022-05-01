@@ -1,4 +1,4 @@
-package com.example.final_odev.View
+package com.example.final_odev.View.activities
 
 import android.Manifest
 import android.annotation.SuppressLint
@@ -13,33 +13,33 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
-import android.provider.MediaStore.Images.Media.getBitmap
 import android.provider.Settings
-import android.util.Base64.DEFAULT
-import android.util.Base64.encodeToString
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.final_odev.R
 import com.example.final_odev.View.Adapter.YerEkleAdapter
+import com.example.final_odev.View.views.DbBitmapUtility
+import com.example.final_odev.View.views.Fotograf
+import com.example.final_odev.View.views.GezilecekYer
+import com.example.final_odev.View.views.OncelikDurumu
 import com.example.final_odev.databinding.ActivityYerEkleBinding
 import com.example.final_odev.viewmodel.FotografLogic
 import com.example.final_odev.viewmodel.GezilecekYerLogic
-import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
+import kotlin.io.path.Path
 
 
 class ActivityYerEkle : AppCompatActivity() {
@@ -50,7 +50,7 @@ class ActivityYerEkle : AppCompatActivity() {
     var ReqCodeCamera:Int = 0
     var tekrarGosterme = false
 
-    var fotograf:Fotograf?=null
+    var fotograf: Fotograf?=null
 
     var fotoBitmap: Bitmap ?= null
 
@@ -294,6 +294,7 @@ class ActivityYerEkle : AppCompatActivity() {
 
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     var resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == Activity.RESULT_OK) {
             // There are no request codes
@@ -301,6 +302,18 @@ class ActivityYerEkle : AppCompatActivity() {
 
             if(result.data?.data != null){
                 fotoUri = result.data!!.data!! // galeriden fotograf secilirse
+                var s = fotoUri.toString()
+                var x = Uri.parse(s)
+                val bitmap2 = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                    ImageDecoder.decodeBitmap(ImageDecoder.createSource(this.contentResolver, x))
+                } else {
+                    MediaStore.Images.Media.getBitmap(this.contentResolver, x)
+                }
+
+                binding.ivDeneme.setImageBitmap(bitmap2)
+
+
+
                 val bitmap = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
                     ImageDecoder.decodeBitmap(ImageDecoder.createSource(this.contentResolver, fotoUri))
                 } else {

@@ -1,14 +1,9 @@
 package com.example.final_odev.View.viewholder
 
-import android.media.Image
 import android.view.View
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.final_odev.R
-import com.example.final_odev.View.DbBitmapUtility
-import com.example.final_odev.View.Fotograf
-import com.example.final_odev.databinding.CardItemBinding
+import com.example.final_odev.View.views.DbBitmapUtility
+import com.example.final_odev.View.views.Fotograf
 import com.example.final_odev.databinding.RvFotoSliderBinding
 
 class SliderViewHolder(val cardItemBinding: RvFotoSliderBinding, var fragment:String, clickSliderGeri:() -> Unit, clickSliderIleri:()-> Unit) : RecyclerView.ViewHolder(cardItemBinding.root) {

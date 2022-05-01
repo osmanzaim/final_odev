@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:background="#45989898"
     android:layout_height="match_parent"
-    tools:context=".View.ActivityYerEkle">
+    tools:context=".View.activities.ActivityYerEkle">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -251,6 +251,16 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.85" />
+
+        <ImageView
+            android:id="@+id/ivDeneme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/cardViewOncelik"
+            app:layout_constraintEnd_toStartOf="@+id/btn_konumEkle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rv_yerEkle"
+            app:srcCompat="@drawable/add" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

@@ -4,7 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.final_odev.View.GezilecekYer
+import com.example.final_odev.View.views.GezilecekYer
 import com.example.final_odev.View.viewholder.CardViewHolder
 import com.example.final_odev.databinding.CardItemBinding
 

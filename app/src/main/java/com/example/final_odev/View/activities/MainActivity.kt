@@ -1,39 +1,22 @@
-package com.example.final_odev
+package com.example.final_odev.View.activities
 
-import android.Manifest
-import android.annotation.SuppressLint
-import android.app.Activity
-import android.app.Instrumentation
 import android.content.Intent
-import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.MediaStore
-import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AlertDialog
-import androidx.core.content.ContextCompat
-import androidx.core.content.FileProvider
-import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
-import androidx.navigation.fragment.NavHostFragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import androidx.viewpager2.widget.ViewPager2
-import com.example.final_odev.View.ActivityYerEkle
-import com.example.final_odev.View.GezilecekYer
-import com.example.final_odev.View.OncelikDurumu
-import com.example.final_odev.View.gezilecekYerList
-import com.example.final_odev.data.Operation
+import com.example.final_odev.R
+import com.example.final_odev.View.views.gezilecekYerList
 import com.example.final_odev.databinding.ActivityMainBinding
 import com.example.final_odev.databinding.TabLayoutBinding
 import com.example.final_odev.fragments.GezdiklerimFragment
 import com.example.final_odev.fragments.GezileceklerFragment
 import com.example.final_odev.viewmodel.GezilecekYerLogic
-import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
 class MainActivity : AppCompatActivity() {
@@ -88,7 +71,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun btnClickListener() {
         binding.floatingActionButton.setOnClickListener{
-            var intent = Intent(this,ActivityYerEkle::class.java)
+            var intent = Intent(this, ActivityYerEkle::class.java)
             resultLauncher.launch(intent)
         }
     }

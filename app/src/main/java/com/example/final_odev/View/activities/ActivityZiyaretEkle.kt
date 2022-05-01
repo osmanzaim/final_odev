@@ -1,4 +1,4 @@
-package com.example.final_odev.View
+package com.example.final_odev.View.activities
 
 import android.app.Activity
 import android.content.Intent
@@ -9,7 +9,6 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
-import android.provider.MediaStore.Images.Media.getBitmap
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
@@ -17,6 +16,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.final_odev.R
 import com.example.final_odev.View.Adapter.YerEkleAdapter
+import com.example.final_odev.View.views.DbBitmapUtility
+import com.example.final_odev.View.views.Fotograf
+import com.example.final_odev.View.views.Ziyaret
 import com.example.final_odev.databinding.ActivityZiyaretEkleBinding
 import com.example.final_odev.viewmodel.FotografLogic
 import com.example.final_odev.viewmodel.GezilecekYerLogic
@@ -26,11 +28,12 @@ import com.example.final_odev.viewmodel.ZiyaretLogic
 class ActivityZiyaretEkle : AppCompatActivity() {
     lateinit var binding: ActivityZiyaretEkleBinding
     lateinit var imageList: ArrayList<ByteArray>
+    var ziyaretFotograflari : ArrayList<Fotograf> = arrayListOf()
 
     var fotoBitmap: Bitmap?= null
     var ReqCodeCamera:Int = 0
     var tekrarGosterme = false
-    var fotograf:Fotograf?=null
+    var fotograf: Fotograf?=null
     lateinit var fotoUri : Uri
 
 
@@ -70,25 +73,18 @@ class ActivityZiyaretEkle : AppCompatActivity() {
 
             GezilecekYerLogic.flagUpdate(this,1,gezilecekYerId)
 
-            var liste = GezilecekYerLogic.flagaGoreGetir(this,1)
+            //var liste = GezilecekYerLogic.flagaGoreGetir(this,1)
 
 
 
 
             for(i in 0 until imageList.size){
-
-
-                fotograf = Fotograf(null,imageList[i],null,gezilecekYerId)
-                fotograf!!.ziyaretAdi = gelenZiyaret.id.toString()
-                //ziyaretAdi olmadigi icin tarih+gezilecek yerId yi seçtim. özel bir değer olur diye aynı tarihte aynı yeri gezmek bir defa olur gibi.
-
+                fotograf = Fotograf(null,imageList[i],gelenZiyaret.id,gezilecekYerId)
                 FotografLogic.ekle(this,fotograf!!)
-
-
             }
 
-            var imgList = FotografLogic.ziyaretAdinaGoreGetir(this,ziyaretTarihi+gezilecekYerId.toString())
-
+            //var imgList = FotografLogic.ziyaretAdinaGoreGetir(this,ziyaretTarihi+gezilecekYerId.toString())
+            var imgList = FotografLogic.fkyeGore(this,gezilecekYerId)
             var intent = Intent()
             setResult(RESULT_OK,intent)
             finish()
@@ -175,6 +171,8 @@ class ActivityZiyaretEkle : AppCompatActivity() {
                 fotoBitmap = bitmap
                 var fotobyteArray = DbBitmapUtility().getBytes(fotoBitmap!!)
                 fotograf = Fotograf(null, fotobyteArray,null,null)
+                ziyaretFotograflari!!.add(fotograf!!)
+
                 var size = imageList.size
                 imageList.removeAt(size-1)
 

@@ -23,18 +23,18 @@
                 android:resource="@xml/file_paths" />
         </provider>
         <activity
-            android:name=".View.ActivityZiyaretEkle"
+            android:name=".View.activities.ActivityZiyaretEkle"
             android:windowSoftInputMode="adjustPan"
             android:exported="false" />
         <activity
-            android:name=".View.ActivityYerEkle"
+            android:name=".View.activities.ActivityYerEkle"
             android:windowSoftInputMode="adjustPan"
             android:exported="false" />
         <activity
-            android:name=".fragments.DetayActivity"
+            android:name=".View.activities.DetayActivity"
             android:exported="false" />
         <activity
-            android:name=".SplashActivity"
+            android:name=".View.activities.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -43,7 +43,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".View.activities.MainActivity"
             android:exported="true" />
     </application>
 

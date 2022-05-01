@@ -1,4 +1,4 @@
-package com.example.final_odev.View
+package com.example.final_odev.View.views
 
 import com.example.final_odev.R
 

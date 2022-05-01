@@ -7,12 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.final_odev.R
 import com.example.final_odev.View.Adapter.CardAdapter
-import com.example.final_odev.View.GezilecekYer
-import com.example.final_odev.View.OncelikDurumu
-import com.example.final_odev.View.Ziyaret
-import com.example.final_odev.View.gezilecekYerList
+import com.example.final_odev.View.views.GezilecekYer
+import com.example.final_odev.View.views.Ziyaret
+import com.example.final_odev.View.activities.DetayActivity
 import com.example.final_odev.databinding.FragmentGezdiklerimBinding
 import com.example.final_odev.viewmodel.GezilecekYerLogic
 import com.example.final_odev.viewmodel.ZiyaretLogic
@@ -105,19 +103,14 @@ class GezdiklerimFragment : Fragment() {
 
         val intent = Intent (activity, DetayActivity::class.java)
 
-
-        intent.putExtra("id",gezilecekYer.id)
-
-        //val tarih =gezilecekYer.ziyaretTarihi
-
         val ziyaret = ZiyaretLogic.fkyeGoreGetir(requireContext(),gezilecekYer.id!!)
         ziyaretList = ziyaret
+
+        intent.putExtra("id",gezilecekYer.id)
         intent.putExtra("tarih",ziyaret[0].ziyaretTarihi)
-        //intent.putExtra("geldigiFragment","asd")
+        intent.putExtra("geldigiFragment","asd")
         intent.putExtra("durum","gezdiklerim")
         startActivity(intent)
-
-        //gezdiklerimin yenilenmesinde sorun var, uygulamayı açıp kapayınca yenileniyor ama diğer türlü olmuyor
 
     }
 

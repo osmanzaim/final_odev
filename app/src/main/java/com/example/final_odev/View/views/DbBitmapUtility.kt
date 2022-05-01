@@ -1,4 +1,4 @@
-package com.example.final_odev.View
+package com.example.final_odev.View.views
 
 import android.graphics.Bitmap
 import android.graphics.Bitmap.CompressFormat

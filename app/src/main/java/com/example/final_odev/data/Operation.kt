@@ -5,10 +5,10 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
-import com.example.final_odev.View.Fotograf
-import com.example.final_odev.View.GezilecekYer
-import com.example.final_odev.View.OncelikDurumu
-import com.example.final_odev.View.Ziyaret
+import com.example.final_odev.View.views.Fotograf
+import com.example.final_odev.View.views.GezilecekYer
+import com.example.final_odev.View.views.OncelikDurumu
+import com.example.final_odev.View.views.Ziyaret
 
 class Operation(context: Context) {
     var GeziDatabase : SQLiteDatabase?= null
@@ -34,7 +34,7 @@ class Operation(context: Context) {
         cv.put("FotoByteArray",fotograf.fotoByteArray)
         cv.put("YerAdi", fotograf.yerAdi)
         cv.put("ZiyaretAdi", fotograf.ziyaretAdi)
-        cv.put("ZiyaretFK", fotograf.ZiyaretFK)
+        cv.put("ZiyaretFK", fotograf.ZiyaretId)
         cv.put("YerFK", fotograf.yerFK)
 
         open()
@@ -45,7 +45,7 @@ class Operation(context: Context) {
 
     }
     private fun fotografFKyeGore(fk:Int) : Cursor{
-        val sorgu = "Select * from Fotograf WHERE ZiyaretFK=$fk"
+        val sorgu = "Select * from Fotograf WHERE YerFK=$fk"
         return GeziDatabase!!.rawQuery(sorgu,null)
     }
     @SuppressLint("Range")
@@ -171,7 +171,7 @@ class Operation(context: Context) {
     }
 
 
-    fun ziyaretEkle(ziyaret:Ziyaret) : Long {
+    fun ziyaretEkle(ziyaret: Ziyaret) : Long {
         val cv = ContentValues()
         cv.put("ZiyaretTarihi", ziyaret.ziyaretTarihi)
         cv.put("Aciklama", ziyaret.aciklama)
@@ -447,7 +447,7 @@ class Operation(context: Context) {
             gezilecekYer = GezilecekYer(yerAdi,kisaTanim,aciklama,null,kapakFotografi,oncelikDurumu,id=id, flag=flag)
 
         }else{
-           gezilecekYer = GezilecekYer("0","",null,null, byteArrayOf(),OncelikDurumu.DUSUK,id=-1)
+           gezilecekYer = GezilecekYer("0","",null,null, byteArrayOf(), OncelikDurumu.DUSUK,id=-1)
         }
         close()
         return gezilecekYer

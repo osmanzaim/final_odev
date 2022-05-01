@@ -1,4 +1,4 @@
-package com.example.final_odev.View
+package com.example.final_odev.View.views
 
 class Ziyaret(
     var id: Int?,
@@ -6,5 +6,7 @@ class Ziyaret(
     var aciklama: String,
     var gezilecekYerFK: Int
 ) {
+
+    lateinit var fotografListesi : ArrayList<Fotograf>
 
 }

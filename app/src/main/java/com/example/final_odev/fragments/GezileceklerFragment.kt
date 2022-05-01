@@ -7,22 +7,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.fragment.app.FragmentManager
-import androidx.navigation.NavController
-import androidx.navigation.Navigation
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.AppBarConfiguration
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.final_odev.DetayFragment
-import com.example.final_odev.R
 import com.example.final_odev.View.Adapter.CardAdapter
-import com.example.final_odev.View.GezilecekYer
-import com.example.final_odev.View.gezilecekYerList
+import com.example.final_odev.View.views.GezilecekYer
+import com.example.final_odev.View.activities.DetayActivity
+import com.example.final_odev.View.views.gezilecekYerList
 import com.example.final_odev.databinding.FragmentGezileceklerBinding
 import com.example.final_odev.viewmodel.GezilecekYerLogic
-import com.example.final_odev.viewmodel.ZiyaretLogic
 
 class GezileceklerFragment : Fragment() {
 

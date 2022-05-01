@@ -1,29 +1,28 @@
-package com.example.final_odev.fragments
+package com.example.final_odev.View.activities
 
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
-import android.graphics.drawable.BitmapDrawable
-import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.denzcoskun.imageslider.constants.ScaleTypes
-import com.denzcoskun.imageslider.models.SlideModel
-import com.example.final_odev.MainActivity
 import com.example.final_odev.R
 import com.example.final_odev.View.*
 import com.example.final_odev.View.Adapter.SliderAdapter
 import com.example.final_odev.View.Adapter.ZiyaretAdapter
+import com.example.final_odev.View.views.Fotograf
+import com.example.final_odev.View.views.GezilecekYer
+import com.example.final_odev.View.views.OncelikDurumu
+import com.example.final_odev.View.views.Ziyaret
 import com.example.final_odev.databinding.ActivityDetayBinding
-import com.example.final_odev.databinding.FragmentGezdiklerimBinding
 import com.example.final_odev.databinding.TabLayoutBinding
+import com.example.final_odev.fragments.GezdiklerimFragment
+import com.example.final_odev.fragments.GezileceklerFragment
 import com.example.final_odev.viewmodel.FotografLogic
 import com.example.final_odev.viewmodel.GezilecekYerLogic
 import com.example.final_odev.viewmodel.ZiyaretLogic
@@ -33,7 +32,7 @@ class DetayActivity : AppCompatActivity() {
     lateinit var binding: ActivityDetayBinding
     lateinit var ziyaretListesi: ArrayList<Ziyaret>
     lateinit var yerAdi:String
-    lateinit var gezilecekYer:GezilecekYer
+    lateinit var gezilecekYer: GezilecekYer
     var count = 0
     var imgList :ArrayList<Fotograf>?= null
 
@@ -90,7 +89,7 @@ class DetayActivity : AppCompatActivity() {
     private fun btnZiyaretEkleListener() {
 
         binding.btnZiyaretEkle.setOnClickListener {
-            var i = Intent(this,ActivityZiyaretEkle::class.java)
+            var i = Intent(this, ActivityZiyaretEkle::class.java)
             var ziyaretId = intent.getIntExtra("id",-1)
             i.putExtra("gezilecekYerId",ziyaretId)
             startForResult.launch(i)
@@ -146,7 +145,6 @@ class DetayActivity : AppCompatActivity() {
     fun imgSliderOlustur() {
 
         var geldigiFragment = intent.getStringExtra("geldigiFragment")
-        var bitmap:Bitmap
 
         if(geldigiFragment == null){ //gezileceklerden geldiyse detay sayfası
             imgList = FotografLogic.yerAdinaGoreGetir(this,yerAdi)
@@ -158,26 +156,28 @@ class DetayActivity : AppCompatActivity() {
                 }
                 lm.orientation = LinearLayoutManager.HORIZONTAL
                 layoutManager = lm
-                var fragment =""
-                var gelenVeri = intent.getStringExtra("durum")
-                if(gelenVeri!=null){
-                    fragment = "gezilecekler"
-                }
 
+                var gelenVeri = intent.getStringExtra("durum")
                 var tarih = intent.getStringExtra("tarih")
+
                 adapter = SliderAdapter(this@DetayActivity,imgList!!,tarih,gelenVeri!!,::geri,::ileri)
             }
         }else { //gezdiklerimden geldiyse detay sayfası.
 
-            //var fk = intent.getIntExtra("tarih",-1)
+            var ziyaretinFotograflari :ArrayList<Fotograf> = arrayListOf()
+            var yerId = intent.getIntExtra("id",-1)
 
-            //var x = ZiyaretLogic.fkyeGoreGetir(this,fk)
+            if(yerId != -1){
+                imgList = arrayListOf()
+               var x = FotografLogic.fkyeGore(this,yerId)
 
-
-            GezdiklerimFragment.gezdigimYerlerListesi.clear()
-            for(item in GezdiklerimFragment.ziyaretList){
-                fotoList += FotografLogic.fkyeGore(this, item.id!!)
+                for (item in x){
+                    ziyaretinFotograflari.add(item)
+                    imgList!!.add(item)
+                }
             }
+
+
 
             binding.rvFotoSlider.apply{
                 var lm = object : LinearLayoutManager(this@DetayActivity){
@@ -187,14 +187,11 @@ class DetayActivity : AppCompatActivity() {
                 }
                 lm.orientation = LinearLayoutManager.HORIZONTAL
                 layoutManager = lm
-                var fragment =""
                 var gelenVeri = intent.getStringExtra("durum")
-                if(gelenVeri!=null){
-                    fragment = "gezilecekler"
-                }
+
 
                 var tarih = intent.getStringExtra("tarih")
-                adapter = SliderAdapter(this@DetayActivity,fotoList!!,tarih,gelenVeri!!,::geri,::ileri)
+                adapter = SliderAdapter(this@DetayActivity,ziyaretinFotograflari!!,tarih,gelenVeri!!,::geri,::ileri)
             }
 
 
